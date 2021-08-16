@@ -1,0 +1,148 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+body {
+    background-image: linear-gradient(30deg, #434343 -40%, black 50%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+p, button {
+    font-size: 20px;
+    color: white;
+}
+
+button {
+    border: none;
+    border-radius: 20px;
+    height: 40px;
+    background-color: transparent;
+    width: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    box-shadow: 0px 2px 0px 0px gray;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.center-box {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.topic {
+    height: 150px;
+}
+
+.equation {
+    height: 100px;
+    display: flex;
+    align-items:  center;
+    animation: from-left 1s;
+}
+
+.menu {
+    position: fixed;
+    right: 5%;
+    top: 10%;
+    height: 80%;
+    width: 100px;
+    background-color:transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    transition: all .5s ease 0s;
+}
+
+.menu-container {
+    height: 100px;
+    background-color: transparent;
+    transition: transform .5s ease-in-out 0s;
+}
+
+.menu-item {
+    display: flex;
+    color: gray;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    transition: ease .5s;
+}
+
+.menu:hover {
+    transform: scale(110%);
+}
+
+.menu:hover > .menu-container > .menu-item {
+    color: white;
+}
+
+.menu-container:hover {
+    transform: scale(150%);
+}
+
+.menu-item:hover {
+    cursor: pointer;
+}
+
+.shake {
+    animation: shake .25s;
+}
+
+@keyframes from-left {
+    0% {
+        transform: translateX(-10000px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes to-right {
+    0% {
+        transform: translateX(0%)
+    }
+    100% {
+        transform: translateX(10000px);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    25% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

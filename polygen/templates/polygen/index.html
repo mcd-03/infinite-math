@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Practice - {{ title }}</title>
+        <meta name="viewport" content="width=device-width">
+
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" type="image/svg" href="static/polygen/favicon.svg"/>
+        <link rel="stylesheet" href="static/polygen/main.css">
+        <script src="static/polygen/scripts.js"></script>
+        <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+
+    </head>
+    <body>
+
+
+        <div class="center-box">
+            <div class="topic">
+                <h1 id="topic-name">choose an equation</h1>
+            </div>
+            <div class="equation">
+                <h2 id="current-equation">
+                    \(\ x\)
+                </h2>
+            </div>
+        <button onClick="replaceEquation();">next</button>
+        </div>
+
+        <nav class="menu">
+            <div class="menu-container" onclick="updateTopic(event);">
+                <a class="menu-item">one-step</a>
+            </div>
+            <div class="menu-container" onclick="updateTopic(event);">
+                <a class="menu-item">two-step</a>
+            </div>
+            <div class="menu-container">
+                <a class="menu-item" onclick="updateTopic(event);">multi-step</a>
+            </div>
+            <div class="menu-container">
+                <a class="menu-item" onclick="updateTopic(event)">v.o.b.s.</a>
+            </div>
+        </nav>
+
+
+    </body>
+</html>
