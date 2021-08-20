@@ -1,8 +1,4 @@
 
-function updateTopic(event) {
-    document.getElementById("topic-name").innerHTML = event.target.innerHTML;
-}
-
 // on page load, center text will read "choose an equation"
 // create onClick function replaceEquation
 // this function will read the innerHTML of topic-name
@@ -10,6 +6,10 @@ function updateTopic(event) {
 // the table will call a function that returns a new equation
 // replace equation will add that new equation to the screen
 // to implement will need to learn how to force mathJax ro rerender
+
+function updateTopic(event) {
+    document.getElementById("topic-name").innerHTML = event.target.innerHTML;
+}
 
 function moveEquation(event) {
     var element = document.getElementById("current-equation");
@@ -25,31 +25,6 @@ function blinkEquation(event) {
     element.style.visibility = "hidden";
     setTimeout(function(){ element.style.visibility = "visible"; }, 1000);
 }
-
-// function replaceEquation(event) {
-
-//     let element = document.getElementById("current-equation");
-//     while (element.firstChild) {
-//         element.removeChild(element.firstChild);
-//     }
-
-//     var math = document.createElement("math");
-//     math.setAttribute("xmlns", "http://www.w3.org/1998/Math/MathML");
-//     math.setAttribute("id", "render-equation");
-//     var row = document.createElement("mrow");
-//     var sup = document.createElement("msup");
-//     var num = document.createElement("mn");
-//     num.innerHTML = "4";
-//     sup.appendChild(num);
-//     row.appendChild(sup);
-//     math.appendChild(row);
-//     var test = document.createElement("H2");
-//     test.innerHTML = "This worked!";
-
-//     element.appendChild(math);
-//     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'render-equation']);
-
-// }
 
 function replaceEquation(event) {
     topic = document.getElementById("topic-name").innerHTML
@@ -73,10 +48,54 @@ function infoChoose() {
 }
 
 function createOneStep() {
-    document.getElementById("current-equation").innerHTML = "\\(2x=4\\)";
-    MathJax.typeset();
     document.body.style.backgroundImage = "linear-gradient(to top, #30cfd0 0%, #330867 100%)";
+    var toggle = randInt(1, 5);
+    switch (toggle) {
+        case 1:
+            return oneDivision();
+        case 2:
+            return oneMultiplication();
+        case 3:
+            return oneAddition();
+        case 4:
+            return oneSubtraction();
+    }
 }
+
+function oneDivision() {
+    var a = randInt(2,10);
+    var b = randInt(2,5);
+    var equation = `\\(${a}x = ${a*b}\\)`;
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    element.setAttribute("title", "TEST!");
+    MathJax.typeset();
+}
+
+function oneMultiplication() {
+    var a = randInt(2,10);
+    var b = randInt(-10, 11);
+    var equation = `\\(\\frac{x}{${a}} = ${b}\\)`;
+    document.getElementById("current-equation").innerHTML = equation;
+    MathJax.typeset();
+}
+
+function oneSubtraction() {
+    var a = randInt(-10, 20);
+    var b = randInt(-20, 30);
+    var equation = `\\(x-${a} = ${b}\\)`;
+    document.getElementById("current-equation").innerHTML = equation;
+    MathJax.typeset();
+}
+
+function oneAddition() {
+    var a = randInt(-10, 20);
+    var b = randInt(-20, 30);
+    var equation = `\\(x+${a} = ${b}\\)`;
+    document.getElementById("current-equation").innerHTML = equation;
+    MathJax.typeset();
+}
+
 
 function createTwoStep() {
     document.getElementById("current-equation").innerHTML = "\\(2x-4=4\\)";
@@ -95,3 +114,18 @@ function createVobs() {
     MathJax.typeset();
     document.body.style.backgroundImage = "linear-gradient(45deg, #874da2 0%, #c43a30 100%)";
 }
+
+function randInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  }
+
+
+  //not called
+  function updateBackground() {
+      let colors = ["linear-gradient(to top, #30cfd0 0%, #330867 100%)", "linear-gradient(45deg, #874da2 0%, #c43a30 100%)", "linear-gradient(to top, #0ba360 0%, #3cba92 100%)", "linear-gradient(15deg, #13547a 0%, #80d0c7 100%)"];
+      let i = randInt(0, colors.length - 1);
+      document.body.style.backgroundImage = colors[i];
+  }
+  
