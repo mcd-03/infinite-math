@@ -62,14 +62,20 @@ button:active {
     animation: from-left 1s;
 }
 
-.menu {
+#menu-icon {
+    position: fixed;
+    right: 7%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#menu {
     position: fixed;
     right: 5%;
     top: 10%;
     height: 80%;
     width: 100px;
     background-color:transparent;
-    display: flex;
     flex-direction: column;
     justify-content: space-around;
     transition: all .5s ease 0s;
@@ -91,11 +97,11 @@ button:active {
     transition: ease .5s;
 }
 
-.menu:hover {
+#menu:hover {
     transform: scale(110%);
 }
 
-.menu:hover > .menu-container > .menu-item {
+#menu:hover > .menu-container > .menu-item {
     color: white;
 }
 

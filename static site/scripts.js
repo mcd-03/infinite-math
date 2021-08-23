@@ -47,6 +47,7 @@ function infoChoose() {
     }, 500);
 }
 
+//chooses and calls from a list of functions that create one step equations
 function createOneStep() {
     document.body.style.backgroundImage = "linear-gradient(to top, #30cfd0 0%, #330867 100%)";
     var toggle = randInt(1, 5);
@@ -102,9 +103,18 @@ function oneAddition() {
     MathJax.typeset();
 }
 
+//chooses and calls from a list of functions that create two step equations
 function createTwoStep() {
     document.body.style.backgroundImage = "linear-gradient(15deg, #13547a 0%, #80d0c7 100%)";
-    twoMultiplication();
+    var toggle = randInt(1, 4);
+    switch (toggle) {
+        case 1:
+            return twoAddition();
+        case 2:
+            return twoMultiplication();
+        case 3:
+            return twoDivision();
+    }
 }
 
 function twoAddition() {
@@ -119,6 +129,7 @@ function twoAddition() {
     MathJax.typeset();
 }
 
+
 function twoMultiplication() {
     var a = randInt(2, 10);
     var b = randInt(2,10);
@@ -131,6 +142,19 @@ function twoMultiplication() {
     MathJax.typeset();
 }
 
+function twoDivision() {
+    var a = randInt(2, 10);
+    var b = randInt(2, 10);
+    var c = randInt(-5, 5);
+    var equation = `\\(${a}(x + ${b}) = ${a*c}\\)`;
+    document.getElementById("current-equation").innerHTML = equation;
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    element.setAttribute("title", `x=${c-b}`);
+    MathJax.typeset();
+}
+
+//chooses and calls from a list of functions that returns multi-step
 function createMultiStep() {
     document.getElementById("current-equation").innerHTML = "\\(2(2x+3)=4\\)";
     MathJax.typeset();
@@ -157,3 +181,12 @@ function randInt(min, max) {
       document.body.style.backgroundImage = colors[i];
   }
   
+  function toggleMenu() {
+      if (document.getElementById('menu').style.display == "none") {
+          document.getElementById('menu').style.display = "flex";
+          document.getElementById('menu-icon').style.display = "none";
+      } else {
+          document.getElementById('menu').style.display = "none";
+          document.getElementById('menu-icon').style.display = "block";
+      }
+  }

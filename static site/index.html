@@ -34,18 +34,26 @@
         <button onClick="replaceEquation();">next</button>
         </div>
 
-        <nav class="menu">
-            <div class="menu-container" onclick="updateTopic(event);">
+        <div id="menu-icon" onclick="toggleMenu();" style="display: block;">
+            <svg height="50" width="20">
+                <circle cx="10" cy="40" r="6" stroke="white" stroke-width="0" fill="white"/>
+                <circle cx="10" cy= "25" r="6" stroke="white" stroke-width="0" fill="white"/>
+                <circle cx="10" cy="10" r="6" stroke="white" stroke-width="0" fill="white"/>
+              </svg>
+        </div>
+
+        <nav id="menu" style="display: none;">
+            <div class="menu-container" onclick="updateTopic(event);toggleMenu();">
                 <a class="menu-item">one-step</a>
             </div>
-            <div class="menu-container" onclick="updateTopic(event);">
+            <div class="menu-container" onclick="updateTopic(event);toggleMenu();">
                 <a class="menu-item">two-step</a>
             </div>
             <div class="menu-container">
-                <a class="menu-item" onclick="updateTopic(event);">multi-step</a>
+                <a class="menu-item" onclick="updateTopic(event);toggleMenu();">multi-step</a>
             </div>
             <div class="menu-container">
-                <a class="menu-item" onclick="updateTopic(event)">v.o.b.s.</a>
+                <a class="menu-item" onclick="updateTopic(event);toggleMenu();">v.o.b.s.</a>
             </div>
         </nav>
 
