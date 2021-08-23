@@ -146,7 +146,3 @@ button:active {
         transform: rotate(0deg);
     }
 }
-
-@media screen and (max-width:600px) {
-    
-}

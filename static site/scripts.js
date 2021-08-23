@@ -68,7 +68,7 @@ function oneDivision() {
     var equation = `\\(${a}x = ${a*b}\\)`;
     element = document.getElementById("current-equation");
     element.innerHTML = equation;
-    element.setAttribute("title", "TEST!");
+    element.setAttribute("title", `x=${b}`);
     MathJax.typeset();
 }
 
@@ -76,7 +76,9 @@ function oneMultiplication() {
     var a = randInt(2,10);
     var b = randInt(-10, 11);
     var equation = `\\(\\frac{x}{${a}} = ${b}\\)`;
-    document.getElementById("current-equation").innerHTML = equation;
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    element.setAttribute("title", `x=${a*b}`);
     MathJax.typeset();
 }
 
@@ -84,7 +86,9 @@ function oneSubtraction() {
     var a = randInt(-10, 20);
     var b = randInt(-20, 30);
     var equation = `\\(x-${a} = ${b}\\)`;
-    document.getElementById("current-equation").innerHTML = equation;
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    element.setAttribute("title", `x=${b+a}`);
     MathJax.typeset();
 }
 
@@ -92,15 +96,39 @@ function oneAddition() {
     var a = randInt(-10, 20);
     var b = randInt(-20, 30);
     var equation = `\\(x+${a} = ${b}\\)`;
-    document.getElementById("current-equation").innerHTML = equation;
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    element.setAttribute("title", `x=${b-a}`);
     MathJax.typeset();
 }
 
-
 function createTwoStep() {
-    document.getElementById("current-equation").innerHTML = "\\(2x-4=4\\)";
-    MathJax.typeset();
     document.body.style.backgroundImage = "linear-gradient(15deg, #13547a 0%, #80d0c7 100%)";
+    twoMultiplication();
+}
+
+function twoAddition() {
+    var a = randInt(2, 10);
+    var b = randInt(-10, 15);
+    var c = randInt(-10, 15);
+    var equation = `\\(${a}x+${b} = ${a*c+b}\\)`;
+    document.getElementById("current-equation").innerHTML = equation;
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    element.setAttribute("title", `x=${c}`);
+    MathJax.typeset();
+}
+
+function twoMultiplication() {
+    var a = randInt(2, 10);
+    var b = randInt(2,10);
+    var c = randInt(-10, 11);
+    var equation = `\\(\\frac{x}{${a}} - ${b} = ${c}\\)`;
+    document.getElementById("current-equation").innerHTML = equation;
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    element.setAttribute("title", `x=${a*(c+b)}`);
+    MathJax.typeset();
 }
 
 function createMultiStep() {
