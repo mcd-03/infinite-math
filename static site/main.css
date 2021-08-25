@@ -8,7 +8,7 @@ html, body {
 }
 
 body {
-    background-image: linear-gradient(30deg, #434343 -40%, black 50%);
+    background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -69,16 +69,21 @@ button:active {
     transform: translateY(-50%);
 }
 
+#menu-icon:hover {
+    cursor: pointer;
+}
+
 #menu {
     position: fixed;
     right: 5%;
     top: 10%;
     height: 80%;
     width: 100px;
-    background-color:transparent;
+    background-color: rgba(180, 180, 180, .3);
     flex-direction: column;
     justify-content: space-around;
     transition: all .5s ease 0s;
+    border-radius: 4px;
 }
 
 .menu-container {
@@ -89,7 +94,7 @@ button:active {
 
 .menu-item {
     display: flex;
-    color: gray;
+    color: white;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -97,16 +102,8 @@ button:active {
     transition: ease .5s;
 }
 
-#menu:hover {
-    transform: scale(110%);
-}
-
-#menu:hover > .menu-container > .menu-item {
-    color: white;
-}
-
 .menu-container:hover {
-    transform: scale(150%);
+    transform: scale(120%);
 }
 
 .menu-item:hover {

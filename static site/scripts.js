@@ -11,21 +11,6 @@ function updateTopic(event) {
     document.getElementById("topic-name").innerHTML = event.target.innerHTML;
 }
 
-function moveEquation(event) {
-    var element = document.getElementById("current-equation");
-    element.style.animation = "from-left 1s reverse";
-    setTimeout(function(){ element.style.visibility = "hidden"; }, 500);
-    setTimeout(function(){ element.style.animation = "from-left 1s";
-                            element.style.animationDelay = ".8s"; 
-                            element.style.visibility = "visible"; }, 900);
-}
-
-function blinkEquation(event) {
-    var element = document.getElementById("current-equation");
-    element.style.visibility = "hidden";
-    setTimeout(function(){ element.style.visibility = "visible"; }, 1000);
-}
-
 function replaceEquation(event) {
     topic = document.getElementById("topic-name").innerHTML
     var dispatch = {
@@ -176,17 +161,25 @@ function randInt(min, max) {
 
   //not called
   function updateBackground() {
-      let colors = ["linear-gradient(to top, #30cfd0 0%, #330867 100%)", "linear-gradient(45deg, #874da2 0%, #c43a30 100%)", "linear-gradient(to top, #0ba360 0%, #3cba92 100%)", "linear-gradient(15deg, #13547a 0%, #80d0c7 100%)"];
+      let colors = ["linear-gradient(to top, #007adf 0%, #00ecbc 100%)", "linear-gradient( 109.6deg,  rgba(62,161,219,1) 11.2%, rgba(93,52,236,1) 100.2% )", "linear-gradient(to top, #30cfd0 0%, #330867 100%)", "linear-gradient(45deg, #874da2 0%, #c43a30 100%)", "linear-gradient(to top, #0ba360 0%, #3cba92 100%)", "linear-gradient(15deg, #13547a 0%, #80d0c7 100%)", "linear-gradient(to right, #1f4037, #99f2c8)", "linear-gradient( 135deg, #FF9D6C 10%, #BB4E75 100%)"];
       let i = randInt(0, colors.length - 1);
       document.body.style.backgroundImage = colors[i];
   }
-  
-  function toggleMenu() {
-      if (document.getElementById('menu').style.display == "none") {
-          document.getElementById('menu').style.display = "flex";
-          document.getElementById('menu-icon').style.display = "none";
-      } else {
-          document.getElementById('menu').style.display = "none";
-          document.getElementById('menu-icon').style.display = "block";
-      }
+
+  function openMenu() {
+      document.getElementById('menu').style.display = "flex";
+      document.getElementById('menu-icon').style.display = "none";
   }
+
+  function closeMenu() {
+      document.getElementById('menu').style.display = "none";
+      document.getElementById('menu-icon').style.display = "block";
+  }
+
+  function toggleMenu() {
+    if (document.getElementById('menu').style.display == "none") {
+        openMenu();
+    } else {
+        closeMenu();
+    }
+}
