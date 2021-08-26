@@ -79,7 +79,7 @@ button:active {
     top: 10%;
     height: 80%;
     width: 100px;
-    background-color: rgba(180, 180, 180, .3);
+    background-color: rgba(211, 211, 211, .4);
     flex-direction: column;
     justify-content: space-around;
     transition: all .5s ease 0s;

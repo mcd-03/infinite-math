@@ -141,16 +141,43 @@ function twoDivision() {
 
 //chooses and calls from a list of functions that returns multi-step
 function createMultiStep() {
-    document.getElementById("current-equation").innerHTML = "\\(2(2x+3)=4\\)";
-    MathJax.typeset();
+    multiDistribute();
     document.body.style.backgroundImage = "linear-gradient(to top, #0ba360 0%, #3cba92 100%)";
 }
 
+function multiDistribute() {
+    var a = randInt(2, 11);
+    var b = randInt(2, 6);
+    var c = randInt(2, 6);
+    var d = randInt(-10, 10)
+    var equation = `\\(${a}(${b}x+${c}) = ${d}\\)`;
+    document.getElementById("current-equation").innerHTML = equation;
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    element.setAttribute("title", `x=${(d-(a*c))/(a*b)}`); //can convert to fraction if using mathjax instead of title
+    MathJax.typeset();
+}
+
 function createVobs() {
-    document.getElementById("current-equation").innerHTML = "\\(2x=4x-2\\)";
+    var a = randInt(2, 11);
+    var b = randInt(2, 6);
+    var c = randInt(2, 11);
+    var d = randInt(2, 6)
+    var equation = `\\(${a}x+${b}=${c}x+${d}\\)`;
+    document.getElementById("current-equation").innerHTML = equation;
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    if (a == c && b == d) {
+        element.setAttribute("title", 'x = Infinite Solutions/All Real Numbers');
+    } else if (a == c) {
+        element.setAttribute("title", 'x = No Solution');
+    } else {
+        element.setAttribute("title", `x = ${d-b}/${a-c}`); //this does not handle negatives well and will not simplify. Also, does not show 0 as solution.
+    };
     MathJax.typeset();
     document.body.style.backgroundImage = "linear-gradient(45deg, #874da2 0%, #c43a30 100%)";
 }
+
 
 function randInt(min, max) {
     min = Math.ceil(min);
