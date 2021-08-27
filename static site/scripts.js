@@ -196,11 +196,13 @@ function randInt(min, max) {
   function openMenu() {
       document.getElementById('menu').style.display = "flex";
       document.getElementById('menu-icon').style.display = "none";
+      document.getElementsByClassName('center-box')[0].style.filter = "opacity(.25)";
   }
 
   function closeMenu() {
       document.getElementById('menu').style.display = "none";
       document.getElementById('menu-icon').style.display = "block";
+      document.getElementsByClassName('center-box')[0].style.filter = "opacity(1)";
   }
 
   function toggleMenu() {
