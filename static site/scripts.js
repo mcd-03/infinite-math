@@ -21,7 +21,6 @@ function replaceEquation(event) {
         "v.o.b.s.": createVobs,
     };
     dispatch[topic]();
-    
 }
 
 function infoChoose() {
@@ -30,6 +29,14 @@ function infoChoose() {
     setTimeout(function() {
         topic.classList.remove("shake");
     }, 500);
+}
+
+function updateProblem(equation, answer) {
+    element = document.getElementById("current-equation");
+    element.innerHTML = equation;
+    element = document.getElementById("current-answer");
+    element.innerHTML = answer;
+    MathJax.typeset();
 }
 
 //chooses and calls from a list of functions that create one step equations
@@ -52,40 +59,32 @@ function oneDivision() {
     var a = randInt(2,10);
     var b = randInt(2,5);
     var equation = `\\(${a}x = ${a*b}\\)`;
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
-    element.setAttribute("title", `x=${b}`);
-    MathJax.typeset();
+    var answer = `\\(x=${b}\\)`;
+    updateProblem(equation, answer);
 }
 
 function oneMultiplication() {
     var a = randInt(2,10);
     var b = randInt(-10, 11);
     var equation = `\\(\\frac{x}{${a}} = ${b}\\)`;
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
-    element.setAttribute("title", `x=${a*b}`);
-    MathJax.typeset();
+    var answer = `\\(x=${a*b}\\)`;
+    updateProblem(equation, answer);
 }
 
 function oneSubtraction() {
     var a = randInt(-10, 20);
     var b = randInt(-20, 30);
     var equation = `\\(x-${a} = ${b}\\)`;
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
-    element.setAttribute("title", `x=${b+a}`);
-    MathJax.typeset();
+    var answer = `\\(x=${b+a}\\)`
+    updateProblem(equation, answer);
 }
 
 function oneAddition() {
     var a = randInt(-10, 20);
     var b = randInt(-20, 30);
     var equation = `\\(x+${a} = ${b}\\)`;
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
-    element.setAttribute("title", `x=${b-a}`);
-    MathJax.typeset();
+    var answer = `\\(x=${b-a}\\)`
+    updateProblem(equation, answer);
 }
 
 //chooses and calls from a list of functions that create two step equations
@@ -107,11 +106,8 @@ function twoAddition() {
     var b = randInt(-10, 15);
     var c = randInt(-10, 15);
     var equation = `\\(${a}x+${b} = ${a*c+b}\\)`;
-    document.getElementById("current-equation").innerHTML = equation;
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
-    element.setAttribute("title", `x=${c}`);
-    MathJax.typeset();
+    var answer = `\\(x=${c}\\)`;
+    updateProblem(equation, answer);
 }
 
 
@@ -120,11 +116,8 @@ function twoMultiplication() {
     var b = randInt(2,10);
     var c = randInt(-10, 11);
     var equation = `\\(\\frac{x}{${a}} - ${b} = ${c}\\)`;
-    document.getElementById("current-equation").innerHTML = equation;
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
-    element.setAttribute("title", `x=${a*(c+b)}`);
-    MathJax.typeset();
+    var answer = `\\(x=${a*(c+b)}\\)`;
+    updateProblem(equation, answer);
 }
 
 function twoDivision() {
@@ -132,11 +125,8 @@ function twoDivision() {
     var b = randInt(2, 10);
     var c = randInt(-5, 5);
     var equation = `\\(${a}(x + ${b}) = ${a*c}\\)`;
-    document.getElementById("current-equation").innerHTML = equation;
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
-    element.setAttribute("title", `x=${c-b}`);
-    MathJax.typeset();
+    var answer = `\\(x=${c-b}\\)`;
+    updateProblem(equation, answer);
 }
 
 //chooses and calls from a list of functions that returns multi-step
@@ -151,11 +141,8 @@ function multiDistribute() {
     var c = randInt(2, 6);
     var d = randInt(-10, 10)
     var equation = `\\(${a}(${b}x+${c}) = ${d}\\)`;
-    document.getElementById("current-equation").innerHTML = equation;
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
-    element.setAttribute("title", `x=${(d-(a*c))/(a*b)}`); //can convert to fraction if using mathjax instead of title
-    MathJax.typeset();
+    var answer = `\\(x=\\frac{${(d-(a*c))}}{${(a*b)}}\\)`;
+    updateProblem(equation, answer);
 }
 
 function createVobs() {
@@ -164,17 +151,14 @@ function createVobs() {
     var c = randInt(2, 11);
     var d = randInt(2, 6)
     var equation = `\\(${a}x+${b}=${c}x+${d}\\)`;
-    document.getElementById("current-equation").innerHTML = equation;
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
     if (a == c && b == d) {
-        element.setAttribute("title", 'x = Infinite Solutions/All Real Numbers');
+        var answer = 'x = Infinite Solutions/All Real Numbers';
     } else if (a == c) {
-        element.setAttribute("title", 'x = No Solution');
+        var answer = 'x = No Solution';
     } else {
-        element.setAttribute("title", `x = ${d-b}/${a-c}`); //this does not handle negatives well and will not simplify. Also, does not show 0 as solution.
+        var answer = `\\(x = ${d-b}/${a-c}\\)`; //this does not handle negatives well and will not simplify. Also, does not show 0 as solution.
     };
-    MathJax.typeset();
+    updateProblem(equation, answer);
     document.body.style.backgroundImage = "linear-gradient(45deg, #874da2 0%, #c43a30 100%)";
 }
 
@@ -211,4 +195,26 @@ function randInt(min, max) {
     } else {
         closeMenu();
     }
+}
+
+function showAnswer() {
+    document.getElementById("current-answer").style.opacity = "1";
+}
+
+function hideAnswer() {
+    document.getElementById("current-answer").style.opacity = "0";
+}
+
+function timeAnswer() {
+    if (1==1) {
+        var speed = 2000; //slowest speed update to 30000 when ready to ship.
+    } else if (0==1) {
+        var speed = 60000; //medium speed
+    } else {
+        var speed = 30000; //fastest speed
+    };
+
+    setTimeout(function() {
+        showAnswer();
+    }, speed);
 }

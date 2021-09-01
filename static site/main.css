@@ -62,6 +62,14 @@ button:active {
     animation: from-left 1s;
 }
 
+#current-answer {
+    opacity: 0;
+}
+
+#current-answer:hover {
+    opacity: 1;
+}
+
 #menu-icon {
     position: fixed;
     right: 7%;

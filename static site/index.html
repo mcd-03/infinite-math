@@ -21,18 +21,23 @@
     </head>
     <body>
 
-
         <div class="center-box">
             <div class="topic">
                 <h1 id="topic-name">choose an equation</h1>
             </div>
-            <div class="equation">
+            <div class="equation" onclick="timeAnswer();">
                 <h2 id="current-equation">
-                    \(\ x\)
+                    \(f(x) = x\)
                 </h2>
             </div>
-        <button onClick="replaceEquation(); closeMenu();">next</button>
+            <div class="equation" onclick="showAnswer();">
+                <h2 id="current-answer">
+                    \(x=\mathbb{R}\)
+                </h2>
+            </div>
+        <button onClick="replaceEquation(); hideAnswer(); timeAnswer();">next</button>
         </div>
+        <!-- <script>"MathJax.typeset();"</script> -->
 
         <div id="menu-icon" onclick="toggleMenu();" style="display: block;">
             <svg height="50" width="20">
@@ -42,7 +47,7 @@
             </svg>
         </div>
 
-        <nav id="menu" style="display: none;">
+        <nav id="menu" onmouseleave="closeMenu();" style="display: none;">
             <div class="menu-container" onclick="updateTopic(event);toggleMenu();">
                 <a class="menu-item">one-step</a>
             </div>
