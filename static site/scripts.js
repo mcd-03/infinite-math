@@ -1,12 +1,4 @@
 
-// on page load, center text will read "choose an equation"
-// create onClick function replaceEquation
-// this function will read the innerHTML of topic-name
-// use that as a key a dispatch table
-// the table will call a function that returns a new equation
-// replace equation will add that new equation to the screen
-// to implement will need to learn how to force mathJax ro rerender
-
 function updateTopic(event) {
     document.getElementById("topic-name").innerHTML = event.target.innerHTML;
 }
@@ -152,7 +144,7 @@ function createVobs() {
     var d = randInt(2, 6)
     var equation = `\\(${a}x+${b}=${c}x+${d}\\)`;
     if (a == c && b == d) {
-        var answer = 'x = Infinite Solutions/All Real Numbers';
+        var answer = `\\(x=\\mathbb{R}\\)`;
     } else if (a == c) {
         var answer = 'x = No Solution';
     } else {

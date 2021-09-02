@@ -86,7 +86,7 @@ button:active {
     right: 5%;
     top: 10%;
     height: 80%;
-    width: 100px;
+    width: clamp(100px, 10%, 200px);
     background-color: rgba(211, 211, 211, .4);
     flex-direction: column;
     justify-content: space-around;
