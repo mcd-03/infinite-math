@@ -36,7 +36,7 @@
         <button onClick="replaceEquation(); hideAnswer(); timeAnswer(); closeMenu();">next</button>
         </div>
 
-        <div id="menu-icon" onmouseenter="toggleMenu();" style="display: block;">
+        <div id="menu-icon" onmouseenter="openMenu();" style="display: block;">
             <svg height="50" width="20">
                 <circle cx="10" cy="40" r="6" stroke="white" stroke-width="0" fill="white"/>
                 <circle cx="10" cy= "25" r="6" stroke="white" stroke-width="0" fill="white"/>
@@ -44,7 +44,7 @@
             </svg>
         </div>
 
-        <nav id="menu" onmouseleave="toggleMenu();" style="display: none;">
+        <nav id="menu" onmouseleave="closeMenu();" style="display: none;">
             <div class="menu-container" onclick="updateTopic(event);toggleMenu();">
                 <a class="menu-item">one-step</a>
             </div>

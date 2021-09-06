@@ -29,6 +29,7 @@ function updateProblem(equation, answer) {
     element = document.getElementById("current-answer");
     element.innerHTML = answer;
     MathJax.typeset();
+    closeMenu();
 }
 
 //chooses and calls from a list of functions that create one step equations
@@ -210,3 +211,24 @@ function timeAnswer() {
         showAnswer();
     }, speed);
 }
+
+// var problem = {
+//     type = 'linear',
+//     equation = '2x=4',
+//     answer = 'x=2'
+// }
+
+// function Problem(type) {
+//     this.type = type;
+//     var dispatch = {
+//         "choose an equation": infoChoose,
+//         "one-step": createOneStep,
+//         "two-step": createTwoStep,
+//         "multi-step": createMultiStep,
+//         "v.o.b.s.": createVobs,
+//     };
+//     switch(this.type) {
+//         case "one-step":
+            
+//     }
+// }
