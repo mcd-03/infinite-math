@@ -26,6 +26,33 @@ p, button {
     color: white;
 }
 
+.speed-toggle, .speed-outer {
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    z-index: 1;
+    left: 20px;
+    top: 20px;
+    transition: all .2s ease-in-out;
+}
+
+.speed-toggle:hover {
+    cursor: pointer;
+}
+
+#slow {
+    animation: to-slow .5s ease forwards;
+}
+
+#medium {
+    animation: to-medium .25s ease forwards;
+}
+
+#fast {
+    animation: to-fast .25s ease forwards;
+}
+
+
 button {
     border: none;
     border-radius: 20px;
@@ -49,10 +76,13 @@ button:active {
     align-items: center;
     justify-content: center;
     margin: 0;
+    user-select: none;
 }
 
 .topic {
-    height: 150px;
+    height: 100px;
+    display: flex;
+    align-items: center;
 }
 
 .equation {
@@ -75,10 +105,8 @@ button:active {
     right: 7%;
     top: 50%;
     transform: translateY(-50%);
-}
-
-#menu-icon:hover {
-    cursor: pointer;
+    user-select: none;
+    z-index: 1;
 }
 
 #menu {
@@ -90,8 +118,9 @@ button:active {
     background-color: rgba(211, 211, 211, .4);
     flex-direction: column;
     justify-content: space-around;
-    transition: all .5s ease 0s;
+    transition: all 5s ease 0s;
     border-radius: 4px;
+    user-select: none;
 }
 
 .menu-container {
@@ -155,5 +184,59 @@ button:active {
 
     100% {
         transform: rotate(0deg);
+    }
+}
+
+@keyframes to-slow {
+    0% {
+        transform: rotateZ(90deg);
+    }
+
+    10% { 
+        transform: rotateZ(100deg);
+    }
+
+    70% {
+        transform: rotateZ(-10deg);
+    } 
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+@keyframes to-medium {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    10% { 
+        transform: rotateZ(-10deg);
+    }
+
+    70% {
+        transform: rotateZ(55deg);
+    } 
+
+    100% {
+        transform: rotateZ(45deg);
+    }
+}
+
+@keyframes to-fast {
+    0% {
+        transform: rotateZ(45deg);
+    }
+
+    10% { 
+        transform: rotateZ(35deg);
+    }
+
+    70% {
+        transform: rotateZ(100deg);
+    } 
+
+    100% {
+        transform: rotateZ(90deg);
     }
 }

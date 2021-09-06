@@ -134,34 +134,85 @@ function multiDistribute() {
     var c = randInt(2, 6);
     var d = randInt(-10, 10)
     var equation = `\\(${a}(${b}x+${c}) = ${d}\\)`;
-    var answer = `\\(x=\\frac{${(d-(a*c))}}{${(a*b)}}\\)`;
+
+    var numerator = d-a*c;
+    var denominator = a*b;
+
+    var answer = simplifyFraction(numerator, denominator);
     updateProblem(equation, answer);
 }
+
+function gcd_two_numbers(x, y) {
+    if ((typeof x !== 'number') || (typeof y !== 'number')) 
+      return false;
+    x = Math.abs(x);
+    y = Math.abs(y);
+    while(y) {
+      var t = y;
+      y = x % y;
+      x = t;
+    }
+    return x;
+  }
+
+  function simplifyFraction(numerator, denominator) {
+    
+    var gcd = gcd_two_numbers(numerator, denominator);
+    numerator = numerator/gcd;
+    denominator = denominator/gcd;
+
+    if (denominator < 0) {
+        numerator = numerator *-1;
+        denominator = denominator *-1;
+    }
+
+    var isNegative = 0;
+
+    if (numerator < 0) {
+        numerator = numerator *-1;
+        isNegative = 1;
+    }
+
+    if (numerator == 0) {
+        return '\\(x=0\\)';
+    } else if (denominator == 1) {
+        return `\\(x=${numerator}\\)`;
+    } else if (numerator == denominator) {
+        return `\\(x=1\\)`;
+    } else if (denominator == 0) {
+        return 'No Solution';
+    } else if (isNegative == 1) {
+        return `\\(x=-\\frac{${numerator}}{${denominator}}\\)`;
+    } else {
+        return `\\(x=\\frac{${numerator}}{${denominator}}\\)`;
+    }
+  }
 
 function createVobs() {
     var a = randInt(2, 11);
     var b = randInt(2, 6);
     var c = randInt(2, 11);
-    var d = randInt(2, 6)
+    var d = randInt(2, 6);
     var equation = `\\(${a}x+${b}=${c}x+${d}\\)`;
+    
     if (a == c && b == d) {
         var answer = `\\(x=\\mathbb{R}\\)`;
     } else if (a == c) {
-        var answer = 'x = No Solution';
+        var answer = 'No Solution';
     } else {
-        var answer = `\\(x = ${d-b}/${a-c}\\)`; //this does not handle negatives well and will not simplify. Also, does not show 0 as solution.
-    };
+        var numerator = d-b;
+        var denominator = a-c;
+        var answer = simplifyFraction(numerator, denominator);
+    }
     updateProblem(equation, answer);
     document.body.style.backgroundImage = "linear-gradient(45deg, #874da2 0%, #c43a30 100%)";
 }
-
 
 function randInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
   }
-
 
   //not called
   function updateBackground() {
@@ -174,12 +225,16 @@ function randInt(min, max) {
       document.getElementById('menu').style.display = "flex";
       document.getElementById('menu-icon').style.display = "none";
       document.getElementsByClassName('center-box')[0].style.filter = "opacity(.25)";
+      document.getElementsByClassName('speed-outer')[0].style.filter = "opacity(.25)";
+      document.getElementsByClassName('speed-toggle')[0].style.filter = "opacity(.25)";
   }
 
   function closeMenu() {
       document.getElementById('menu').style.display = "none";
       document.getElementById('menu-icon').style.display = "block";
       document.getElementsByClassName('center-box')[0].style.filter = "opacity(1)";
+      document.getElementsByClassName('speed-outer')[0].style.filter = "opacity(1)";
+      document.getElementsByClassName('speed-toggle')[0].style.filter = "opacity(1)";
   }
 
   function toggleMenu() {
@@ -199,12 +254,15 @@ function hideAnswer() {
 }
 
 function timeAnswer() {
-    if (1==1) {
-        var speed = 2000; //slowest speed update to 30000 when ready to ship.
-    } else if (0==1) {
-        var speed = 60000; //medium speed
+    var svg = document.getElementsByClassName("speed-toggle")[0];
+    var currentSpeed = svg.id;
+
+    if (currentSpeed == "slow") {
+        var speed = 60000; //slowest speed
+    } else if (currentSpeed == "medium") {
+        var speed = 30000; //medium speed
     } else {
-        var speed = 30000; //fastest speed
+        var speed = 15000; //fastest speed
     };
 
     setTimeout(function() {
@@ -212,23 +270,18 @@ function timeAnswer() {
     }, speed);
 }
 
-// var problem = {
-//     type = 'linear',
-//     equation = '2x=4',
-//     answer = 'x=2'
-// }
+function changeSpeed() {
+    var svg = document.getElementsByClassName("speed-toggle")[0];
+    var speed = svg.id;
 
-// function Problem(type) {
-//     this.type = type;
-//     var dispatch = {
-//         "choose an equation": infoChoose,
-//         "one-step": createOneStep,
-//         "two-step": createTwoStep,
-//         "multi-step": createMultiStep,
-//         "v.o.b.s.": createVobs,
-//     };
-//     switch(this.type) {
-//         case "one-step":
-            
-//     }
-// }
+    if (speed == "slow") {
+        // update to medium
+        svg.setAttribute("id", "medium");
+    } else if (speed == "medium") {
+        // update to fast
+        svg.setAttribute("id", "fast");
+    } else {
+        // update to slow
+        svg.setAttribute("id", "slow");
+    };
+}
