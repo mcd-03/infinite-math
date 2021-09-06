@@ -41,6 +41,13 @@ p, button {
     cursor: pointer;
 }
 
+.speed-info {
+    position: fixed;
+    left: 100px;
+    top: 10px;
+    filter: brightness(.8);
+}
+
 #slow {
     animation: to-slow .5s ease forwards;
 }

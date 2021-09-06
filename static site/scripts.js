@@ -254,18 +254,20 @@ function hideAnswer() {
 }
 
 function timeAnswer() {
+    clearTimeout(window.answerTimer);
+    
     var svg = document.getElementsByClassName("speed-toggle")[0];
     var currentSpeed = svg.id;
 
     if (currentSpeed == "slow") {
-        var speed = 60000; //slowest speed
+        var speed = 45000; //slowest speed
     } else if (currentSpeed == "medium") {
-        var speed = 30000; //medium speed
+        var speed = 15000; //medium speed
     } else {
-        var speed = 15000; //fastest speed
+        var speed = 5000; //fastest speed
     };
 
-    setTimeout(function() {
+    window.answerTimer = setTimeout(function() {
         showAnswer();
     }, speed);
 }
@@ -273,15 +275,34 @@ function timeAnswer() {
 function changeSpeed() {
     var svg = document.getElementsByClassName("speed-toggle")[0];
     var speed = svg.id;
+    var info = document.getElementsByClassName("speed-info")[0];
 
     if (speed == "slow") {
         // update to medium
+        clearTimeout(window.speedTimer);
         svg.setAttribute("id", "medium");
+        info.innerHTML = "15 secs/answer";
+        info.style.opacity = "1";
+        hideSpeedInfo();
     } else if (speed == "medium") {
         // update to fast
+        clearTimeout(window.speedTimer);
         svg.setAttribute("id", "fast");
+        info.innerHTML = "5 secs/answer";
+        info.style.opacity = "1";
+        hideSpeedInfo();
     } else {
         // update to slow
+        clearTimeout(window.speedTimer);
         svg.setAttribute("id", "slow");
+        info.innerHTML = "45 secs/answer";
+        info.style.opacity = "1";
+        hideSpeedInfo();
     };
+}
+
+function hideSpeedInfo() {
+    window.speedTimer = setTimeout(function() {
+        document.getElementsByClassName("speed-info")[0].style.opacity = "0";
+    }, 5000);
 }
