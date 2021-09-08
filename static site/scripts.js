@@ -17,10 +17,13 @@ function replaceEquation(event) {
 
 function infoChoose() {
     topic = document.getElementById("topic-name");
-    topic.setAttribute("class", "shake")
+    topic.setAttribute("class", "shake");
+    menu = document.getElementById("menu-icon");
+    menu.setAttribute("class", "blur-focus");
     setTimeout(function() {
         topic.classList.remove("shake");
-    }, 500);
+        menu.classList.remove("blur-focus");
+    }, 2000);
 }
 
 function updateProblem(equation, answer) {
@@ -306,3 +309,5 @@ function hideSpeedInfo() {
         document.getElementsByClassName("speed-info")[0].style.opacity = "0";
     }, 5000);
 }
+
+hideSpeedInfo();

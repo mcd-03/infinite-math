@@ -115,6 +115,9 @@ button:active {
     transform: translateY(-50%);
     user-select: none;
     z-index: 1;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
 }
 
 #menu {
@@ -159,6 +162,10 @@ button:active {
 
 .shake {
     animation: shake .25s;
+}
+
+.blur-focus {
+    animation: blur-focus 2s ease forwards;
 }
 
 @keyframes from-left {
@@ -262,5 +269,19 @@ button:active {
 
     100% {
         transform: rotateY(0deg);
+    }
+}
+
+@keyframes blur-focus {
+    0% {
+        box-shadow: none;
+    }
+
+    50% {
+        box-shadow: 0 0 0 80vw rgba(211, 211, 211, .4);
+    }
+
+    100% {
+        box-shadow: none;
     }
 }
