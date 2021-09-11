@@ -129,7 +129,7 @@ button:active {
     background-color: rgba(211, 211, 211, .4);
     flex-direction: column;
     justify-content: space-around;
-    animation: pop-in-side .5s ease-out;
+    animation: pop-in-side 1s ease-out;
     transform-origin: right;
     perspective: 1000px;
     border-radius: 4px;
@@ -139,7 +139,7 @@ button:active {
 .menu-container {
     height: 100px;
     background-color: transparent;
-    transition: transform .5s ease-in-out 0s;
+    transition: transform .3s ease-in-out 0s;
 }
 
 .menu-item {
@@ -149,7 +149,6 @@ button:active {
     align-items: center;
     height: 100%;
     text-align: center;
-    transition: ease .5s;
 }
 
 .menu-container:hover {
@@ -168,22 +167,11 @@ button:active {
     animation: blur-focus 2s ease forwards;
 }
 
-@keyframes from-left {
-    0% {
-        transform: translateX(-10000px);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes to-right {
-    0% {
-        transform: translateX(0%)
-    }
-    100% {
-        transform: translateX(10000px);
-    }
+.paused{
+    -webkit-animation-play-state:paused;
+    -moz-animation-play-state:paused;
+    -o-animation-play-state:paused; 
+    animation-play-state:paused;
 }
 
 @keyframes shake {
@@ -260,11 +248,11 @@ button:active {
 
 @keyframes pop-in-side {
     0% {
-        transform: rotateY(90deg);
+        transform: rotateY(-90deg);
     }    
 
     80% {
-        transform: rotateY(-10deg);
+        transform: rotateY(10deg);
     }
 
     100% {

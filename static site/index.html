@@ -38,15 +38,12 @@
                 <h1 id="topic-name">choose an equation</h1>
             </div>
             <div class="equation" onclick="timeAnswer();">
-                <h2 id="current-equation">
-                    \(f(x) = x\)
-                </h2>
-            <script>MathJax.typeset();</script>
+                <h2 id="current-equation"></h2>
             </div>
             <div class="answer" onclick="showAnswer();">
                 <h2 id="current-answer"></h2>
             </div>
-        <button onClick="replaceEquation(); hideAnswer(); timeAnswer(); closeMenu();">next</button>
+        <button id="next-button" onClick="replaceEquation(); hideAnswer(); timeAnswer(); closeMenu();">next</button>
         </div>
 
         <div id="menu-icon" onmouseenter="openMenu();" style="display: block;">

@@ -18,19 +18,26 @@ function replaceEquation(event) {
 function infoChoose() {
     topic = document.getElementById("topic-name");
     topic.setAttribute("class", "shake");
-    menu = document.getElementById("menu-icon");
-    menu.setAttribute("class", "blur-focus");
+    menuIcon = document.getElementById("menu-icon");
+    menuIcon.setAttribute("class", "blur-focus");
+    var button = document.getElementById("next-button");
+    button.disabled = true;
     setTimeout(function() {
         topic.classList.remove("shake");
-        menu.classList.remove("blur-focus");
+        menuIcon.classList.remove("blur-focus");
+        button.disabled = false;
     }, 2000);
 }
 
 function updateProblem(equation, answer) {
-    element = document.getElementById("current-equation");
-    element.innerHTML = equation;
-    element = document.getElementById("current-answer");
-    element.innerHTML = answer;
+    currentEquation = document.getElementById("current-equation");
+    currentEquation.style.opacity = "0";
+    currentEquation.innerHTML = equation;
+    setTimeout(function() {
+        currentEquation.style.opacity = "1";
+    }, 300);
+    currentAnswer = document.getElementById("current-answer");
+    currentAnswer.innerHTML = answer;
     MathJax.typeset();
     closeMenu();
 }
@@ -226,15 +233,22 @@ function randInt(min, max) {
 
   function openMenu() {
       document.getElementById('menu').style.display = "flex";
-      document.getElementById('menu-icon').style.display = "none";
+      menuIcon = document.getElementById('menu-icon');
+      menuIcon.style.visibility = "hidden";
+      menuIcon.classList.add('paused');
+      menuIcon.classList.remove("blur-focus");
       document.getElementsByClassName('center-box')[0].style.filter = "opacity(.25)";
       document.getElementsByClassName('speed-outer')[0].style.filter = "opacity(.25)";
       document.getElementsByClassName('speed-toggle')[0].style.filter = "opacity(.25)";
   }
 
+
+//   This function is not working!! Want to reverse animation on leave
   function closeMenu() {
       document.getElementById('menu').style.display = "none";
-      document.getElementById('menu-icon').style.display = "block";
+      menuIcon = document.getElementById('menu-icon');
+      menuIcon.style.visibility = "visible";
+      menuIcon.classList.add('blur-focus');
       document.getElementsByClassName('center-box')[0].style.filter = "opacity(1)";
       document.getElementsByClassName('speed-outer')[0].style.filter = "opacity(1)";
       document.getElementsByClassName('speed-toggle')[0].style.filter = "opacity(1)";
