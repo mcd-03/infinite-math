@@ -54,18 +54,18 @@
             </svg>
         </div>
 
-        <nav id="menu" onmouseleave="closeMenu();" style="display: none;">
-            <div class="menu-container" onclick="updateTopic(event);toggleMenu();">
+        <nav id="menu" class="closed" onmouseleave="closeMenu();">
+            <div class="menu-container" onclick="updateTopic(event);">
                 <a class="menu-item">one-step</a>
             </div>
-            <div class="menu-container" onclick="updateTopic(event);toggleMenu();">
+            <div class="menu-container" onclick="updateTopic(event);">
                 <a class="menu-item">two-step</a>
             </div>
             <div class="menu-container">
-                <a class="menu-item" onclick="updateTopic(event);toggleMenu();">multi-step</a>
+                <a class="menu-item" onclick="updateTopic(event);">multi-step</a>
             </div>
             <div class="menu-container">
-                <a class="menu-item" onclick="updateTopic(event);toggleMenu();">v.o.b.s.</a>
+                <a class="menu-item" onclick="updateTopic(event);">v.o.b.s.</a>
             </div>
         </nav>
 
