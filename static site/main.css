@@ -174,7 +174,7 @@ ul.menu-items {
 }
 
 ul.menu-items > li {
-    background-color: rgba(180, 180, 180); 
+    background-color: rgba(211, 211, 211, .4);
 }
 
 ul.menu-items > li:hover{
@@ -193,19 +193,19 @@ ul.menu-items > li:last-child {
     display: block;
 }
 
-#item-1 {
+.item-1 {
     animation: pop-in-side 300ms ease 0ms;
 }
 
-#item-2 {
+.item-2 {
     animation: pop-in-side 300ms ease 150ms;
 }
 
-#item-3 {
+.item-3 {
     animation: pop-in-side 300ms ease 300ms;
 }
 
-#item-4 {
+.item-4 {
     animation: pop-in-side 300ms ease 450ms;
 }
 
