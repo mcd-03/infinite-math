@@ -4,12 +4,12 @@ function infoChoose() {
     let topic = document.getElementById("topic-name");
     topic.setAttribute("class", "shake");
     let menuIcon = document.getElementById("menu-icon");
-    menuIcon.setAttribute("class", "blur-focus");
+    // menuIcon.setAttribute("class", "blur-focus");
     let button = document.getElementById("next-button");
     button.disabled = true;
     setTimeout(function() {
         topic.classList.remove("shake");
-        menuIcon.classList.remove("blur-focus");
+        // menuIcon.classList.remove("blur-focus");
         button.disabled = false;
     }, 2000);
 }
@@ -35,7 +35,7 @@ function updateTopic(event) {
 function replaceEquation(event) {
     let topic = document.getElementById("topic-name").innerHTML;
     let dispatch = {
-        "choose an equation": infoChoose,
+        "choose a type of equation": infoChoose,
         "one-step": createOneStep,
         "two-step": createTwoStep,
         "multi-step": createMultiStep,
@@ -46,6 +46,7 @@ function replaceEquation(event) {
 
 // Updates the inner HTML of the problem and answer shown
 function updateProblem(equation, answer) {
+    forceCloseMenu();
     let currentEquation = document.getElementById("current-equation");
     currentEquation.style.opacity = "0";
     currentEquation.innerHTML = equation;
@@ -55,7 +56,7 @@ function updateProblem(equation, answer) {
     let currentAnswer = document.getElementById("current-answer");
     currentAnswer.innerHTML = answer;
     MathJax.typeset();
-    closeMenu();
+
 }
 
 // Randomly chooses from a list of function that create different
@@ -240,29 +241,29 @@ function randInt(min, max) {
     }
   }
 
-  // Opens the menu with animation
-  function openMenu() {
-      document.getElementById('menu').classList.remove('closed');
-      let menuIcon = document.getElementById('menu-icon');
-      menuIcon.style.visibility = "hidden";
-      menuIcon.classList.add('paused');
-      menuIcon.classList.remove("blur-focus");
-      document.getElementsByClassName('center-box')[0].style.filter = "opacity(.25)";
-      document.getElementsByClassName('speed-outer')[0].style.filter = "opacity(.25)";
-      document.getElementsByClassName('speed-toggle')[0].style.filter = "opacity(.25)";
+  function toggleMenu(event) {
+      if (event.target.nextElementSibling.classList.contains("closed")) {
+          openMenu(event);
+      } else {
+          closeMenu(event);
+      };
   }
 
-// Closes the menu with animation
-  function closeMenu() {
-      document.getElementById('menu').classList.add('closed');
-      let menuIcon = document.getElementById('menu-icon');
-      visibilityTimer = setTimeout( function() {
-          menuIcon.style.visibility = "visible";
-      }, 300);
-      menuIcon.classList.add('blur-focus');
-      document.getElementsByClassName('center-box')[0].style.filter = "opacity(1)";
-      document.getElementsByClassName('speed-outer')[0].style.filter = "opacity(1)";
-      document.getElementsByClassName('speed-toggle')[0].style.filter = "opacity(1)";
+  // Opens the menu
+  function openMenu(event) {
+      event.target.nextElementSibling.classList.replace("closed", "open");
+  }
+
+// Closes the menu
+  function closeMenu(event) {
+      event.target.nextElementSibling.classList.replace("open", "closed");
+  }
+
+// forces the menu closed if next button is hit - not functional
+  function forceCloseMenu() {
+      let menus = document.getElementsByClassName("menu-container");
+      menus[0].classList.replace("open", "closed");
+      menus[1].classList.replace("open", "closed");
   }
 
 function showAnswer() {

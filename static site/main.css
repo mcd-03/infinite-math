@@ -21,18 +21,26 @@ h2 {
     font-size: 32px;
 }
 
-p, button {
+p {
     font-size: 20px;
+}
+
+button {
+    font-size: 16px;
     color: white;
 }
 
+li {
+    list-style-type: none;
+}
+
 .speed-toggle, .speed-outer {
-    position: fixed;
+    position: relative;
     height: 50px;
     width: 50px;
     z-index: 1;
     left: 20px;
-    top: 20px;
+    top: 10px;
     transition: all .2s ease-in-out;
     user-select: none;
 }
@@ -41,11 +49,8 @@ p, button {
     cursor: pointer;
 }
 
-.speed-info {
-    position: fixed;
-    left: 100px;
-    top: 10px;
-    filter: brightness(.8);
+.speed-toggle {
+    left: -30px;
 }
 
 #slow {
@@ -82,27 +87,16 @@ button:focus:active {
     transform: translateY(4px);
 }
 
-.center-box {
-    height: 100vh;
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin: 0;
     user-select: none;
-}
-
-.topic {
-    height: 100px;
-    display: flex;
-    align-items: center;
-}
-
-.equation, .answer {
-    height: 100px;
-    display: flex;
-    align-items:  center;
-    animation: from-left 1s;
 }
 
 #current-answer {
@@ -113,7 +107,7 @@ button:focus:active {
     opacity: 1;
 }
 
-#menu-icon {
+/* #menu-icon {
     position: fixed;
     right: 7%;
     top: 50%;
@@ -123,46 +117,96 @@ button:focus:active {
     border-radius: 50px;
     width: 100px;
     height: 100px;
-}
+} */
 
-#menu {
-    position: fixed;
-    right: 5%;
-    top: 10%;
-    height: 80%;
-    width: clamp(100px, 10%, 200px);
-    background-color: rgba(211, 211, 211, .4);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    transition: transform .6s;
-    transform-origin: right;
-    perspective: 1000px;
-    border-radius: 4px;
-    user-select: none;
-}
 
-.menu-container {
-    height: 100px;
-    background-color: transparent;
-    transition: transform .3s ease-in-out 0s;
-}
-
-.menu-item {
-    display: flex;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    text-align: center;
-}
-
-.menu-container:hover {
-    transform: scale(120%);
-}
-
-.menu-item:hover {
+#speeds:hover, #types:hover {
     cursor: pointer;
+}
+
+menu {
+    padding: 0px;
+    text-align: center;
+    margin: 20px 20px 0 20px;
+    border-radius: 5px;
+}
+
+menu > ul {
+    float: left;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+menu > ul > li {
+    background-color: rgba(211, 211, 211, .4);
+    float: left;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    cursor: pointer;
+}
+
+menu > ul > li:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+menu > ul > li:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+menu > ul > li:hover {
+    background-color: rgba(211, 211, 211, .2);
+}
+
+.menu-items {
+    perspective: 150px;
+    perspective-origin: center;
+}
+
+ul.menu-items {
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 100%;
+    padding: 0px;
+}
+
+ul.menu-items > li {
+    background-color: rgba(180, 180, 180); 
+}
+
+ul.menu-items > li:hover{
+    background-color: rgba(211, 211, 211, .2);
+}
+
+ul.menu-items > li:last-child {
+    border-radius: 0 0 5px 5px;
+}
+
+.menu-container > ul > li {
+    display: none;
+}
+
+.menu-container:hover > ul > li {
+    display: block;
+}
+
+#item-1 {
+    animation: pop-in-side 300ms ease 0ms;
+}
+
+#item-2 {
+    animation: pop-in-side 300ms ease 150ms;
+}
+
+#item-3 {
+    animation: pop-in-side 300ms ease 300ms;
+}
+
+#item-4 {
+    animation: pop-in-side 300ms ease 450ms;
 }
 
 .shake {
@@ -178,10 +222,6 @@ button:focus:active {
     -moz-animation-play-state:paused;
     -o-animation-play-state:paused; 
     animation-play-state:paused;
-}
-
-.closed {
-    transform: rotateY(-90deg);
 }
 
 @keyframes shake {
@@ -258,15 +298,13 @@ button:focus:active {
 
 @keyframes pop-in-side {
     0% {
-        transform: rotateY(-90deg);
+        transform: rotateY(-90deg) translateY(30px);
+        opacity: 0;
     }    
 
-    80% {
-        transform: rotateY(10deg);
-    }
-
     100% {
-        transform: rotateY(0deg);
+        transform: rotateY(0deg) translateY(0px);
+        opacity: 1;
     }
 }
 

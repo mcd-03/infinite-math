@@ -18,7 +18,41 @@
         </script>
 
     </head>
+
     <body>
+        <menu>
+            <ul>
+                <li class="menu-container">Types of Equation
+                    <ul class="menu-items">
+                        <li id="item-1" onclick="updateTopic(event);">one-step</li>
+                        <li  id="item-2" onclick="updateTopic(event);">two-step</li>
+                        <li id="item-3" onclick="updateTopic(event);">multi-step</li>
+                        <li id="item-4" onclick="updateTopic(event);">v.o.b.s.</li>
+                    </ul>
+                </li>
+                <li class="menu-container">Speed Options
+                    <ul class="menu-items">
+                        <li>fast (5 secs/answer)</li>
+                        <li>medium (15 secs/answer)</li>
+                        <li>slow (45 secs/answer)</li>
+                    </ul>
+                </li>
+            </ul>
+        </menu>
+        <!-- holds the menu options (speed and type of equation) -->
+
+        <main>
+            <h1 class="topic" id="topic-name">choose a type of equation</h1>
+            <h2 class="equation" id="current-equation">equation</h2>
+            <h2 class="answer" id="current-answer">answer</h2>
+            <button id="next-button" onclick="replaceEquation();  hideAnswer(); timeAnswer();">next-question</button> 
+            <!-- force close menu is not functional -->
+        </main>
+        <!-- holds the type of equation, problem given, answer to the equation, and the "next" button -->
+    </body>
+
+
+    <!-- <body>
         <div class="speed-outer">
             <svg height="30" width="50">
                 <circle cx="25" cy="25" r="20" stroke="white" stroke-width="4" fill="none"/>
@@ -70,5 +104,5 @@
         </nav>
 
 
-    </body>
+    </body> -->
 </html>
