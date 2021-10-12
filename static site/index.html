@@ -22,7 +22,7 @@
     <body>
         <menu>
             <ul>
-                <li class="menu-container">Types of Equation
+                <li class="menu-container" id="menu-header">Types of Equation
                     <ul class="menu-items">
                         <li class="item-1" onclick="updateTopic(event);">one-step</li>
                         <li  class="item-2" onclick="updateTopic(event);">two-step</li>
@@ -59,7 +59,7 @@
         <main>
             <h1 class="topic" id="topic-name">choose a type of equation</h1>
             <h2 class="equation" id="current-equation"></h2>
-            <h2 class="answer" id="current-answer">answer</h2>
+            <h2 class="answer" id="current-answer"></h2>
             <button id="next-button" onclick="replaceEquation();  hideAnswer(); timeAnswer();">next-question</button> 
             <!-- force close menu is not functional -->
         </main>

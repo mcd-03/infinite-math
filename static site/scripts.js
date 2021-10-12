@@ -3,13 +3,13 @@
 function infoChoose() {
     let topic = document.getElementById("topic-name");
     topic.setAttribute("class", "shake");
-    let menuIcon = document.getElementById("menu-icon");
-    // menuIcon.setAttribute("class", "blur-focus");
+    let menuHeader = document.getElementById("menu-header");
+    menuHeader.classList.remove("menu-container");
     let button = document.getElementById("next-button");
     button.disabled = true;
     setTimeout(function() {
         topic.classList.remove("shake");
-        // menuIcon.classList.remove("blur-focus");
+        menuHeader.classList.add("menu-container");
         button.disabled = false;
     }, 2000);
 }

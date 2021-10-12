@@ -36,8 +36,8 @@ li {
 
 .speed-outer, .speed-toggle {
     position: absolute;
-    right: 40px;
-    top: 40px;
+    right: 20px;
+    top: 30px;
     height: 50px;
     width: 50px;
 }
@@ -53,8 +53,8 @@ li {
 
 .speed-info {
     position: absolute;
-    right: 40px;
-    top: 50px;
+    right: 90px;
+    top: 20px;
 }
 
 
@@ -222,12 +222,9 @@ ul.menu-items > li:last-child {
 }
 
 .shake {
-    animation: shake .25s;
+    animation: shake .5s;
 }
 
-.blur-focus {
-    animation: blur-focus 2s ease forwards;
-}
 
 .paused{
     -webkit-animation-play-state:paused;
@@ -374,21 +371,11 @@ ul.menu-items > li:last-child {
     }
 }
 
-@keyframes blur-focus {
-    0% {
-        box-shadow: none;
-    }
-
-    50% {
-        box-shadow: 0 0 0 80vw rgba(211, 211, 211, .4);
-    }
-
-    100% {
-        box-shadow: none;
-    }
-}
-
 @media screen and (max-width: 600px) {
+
+    .speed-info {
+        display: none;
+    }
 
     @keyframes blur-focus {
         0% {
