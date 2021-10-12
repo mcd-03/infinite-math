@@ -32,20 +32,33 @@
                 </li>
                 <li class="menu-container">Speed Options
                     <ul class="menu-items">
-                        <li class="item-1">fast (5 secs)</li>
-                        <li class="item-2">medium (15 secs)</li>
-                        <li class="item-3">slow (45 secs)</li>
+                        <li class="item-1" onclick="setSpeed(event);">fast (5 secs)</li>
+                        <li class="item-2" onclick="setSpeed(event);">medium (15 secs)</li>
+                        <li class="item-3" onclick="setSpeed(event);">slow (45 secs)</li>
                     </ul>
                 </li>
             </ul>
 
+            <div class="speed-outer">
+                <svg height="30" width="50">
+                    <circle cx="25" cy="25" r="20" stroke="white" stroke-width="4" fill="none"/>
+                </svg>
+            </div>
+            <div class="speed-toggle" id="slow" onclick="changeSpeed();">
+                <svg height="30" width="50">
+                    <line x1='25' y1='25' x2='5' y2='10' stroke="white" stroke-width="3"/>
+                </svg>
+            </div>
+            <p class="speed-info">
+                slow (45 secs)
+            </p>
             
         </menu>
         <!-- holds the menu options (speed and type of equation) -->
 
         <main>
             <h1 class="topic" id="topic-name">choose a type of equation</h1>
-            <h2 class="equation" id="current-equation">equation</h2>
+            <h2 class="equation" id="current-equation"></h2>
             <h2 class="answer" id="current-answer">answer</h2>
             <button id="next-button" onclick="replaceEquation();  hideAnswer(); timeAnswer();">next-question</button> 
             <!-- force close menu is not functional -->

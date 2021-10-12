@@ -34,13 +34,15 @@ li {
     list-style-type: none;
 }
 
-.speed-toggle, .speed-outer {
-    position: relative;
+.speed-outer, .speed-toggle {
+    position: absolute;
+    right: 40px;
+    top: 40px;
     height: 50px;
     width: 50px;
-    z-index: 1;
-    left: 20px;
-    top: 10px;
+}
+
+.speed-toggle {
     transition: all .2s ease-in-out;
     user-select: none;
 }
@@ -49,9 +51,12 @@ li {
     cursor: pointer;
 }
 
-.speed-toggle {
-    left: -30px;
+.speed-info {
+    position: absolute;
+    right: 40px;
+    top: 50px;
 }
+
 
 #slow {
     animation: to-slow .5s ease forwards;
@@ -63,6 +68,18 @@ li {
 
 #fast {
     animation: to-fast .25s ease forwards;
+}
+
+#alt-slow {
+    animation:med-slow .25s ease forwards;
+}
+
+#alt-medium {
+    animation: fast-med .25s ease forwards;
+}
+
+#alt-fast {
+    animation: slow-fast .5s ease forwards;
 }
 
 
@@ -99,12 +116,12 @@ main {
     user-select: none;
 }
 
-#current-answer {
-    opacity: 0;
+main > h2, h1 {
+    height: 40px;
 }
 
-#current-answer:hover {
-    opacity: 1;
+#current-answer {
+    opacity: 0;
 }
 
 /* #menu-icon {
@@ -118,11 +135,6 @@ main {
     width: 100px;
     height: 100px;
 } */
-
-
-#speeds:hover, #types:hover {
-    cursor: pointer;
-}
 
 menu {
     padding: 0px;
@@ -296,6 +308,60 @@ ul.menu-items > li:last-child {
     }
 }
 
+@keyframes fast-med {
+    0% {
+        transform: rotateZ(90deg);
+    }
+
+    10% { 
+        transform: rotateZ(100deg);
+    }
+
+    70% {
+        transform: rotateZ(35deg);
+    } 
+
+    100% {
+        transform: rotateZ(45deg);
+    }
+}
+
+@keyframes med-slow {
+    0% {
+        transform: rotateZ(45deg);
+    }
+
+    10% { 
+        transform: rotateZ(55deg);
+    }
+
+    70% {
+        transform: rotateZ(-10deg);
+    } 
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+@keyframes slow-fast {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    10% { 
+        transform: rotateZ(-10deg);
+    }
+
+    70% {
+        transform: rotateZ(100deg);
+    } 
+
+    100% {
+        transform: rotateZ(90deg);
+    }
+}
+
 @keyframes pop-in-side {
     0% {
         transform: rotateY(-90deg) translateY(30px);
@@ -323,10 +389,6 @@ ul.menu-items > li:last-child {
 }
 
 @media screen and (max-width: 600px) {
-    #menu-icon {
-        right: 0px;
-        top: 50px;
-    }
 
     @keyframes blur-focus {
         0% {

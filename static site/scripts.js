@@ -291,6 +291,42 @@ function timeAnswer() {
     }, speed);
 }
 
+// Sets the speed of the speed toggle based on the menu choice
+function setSpeed(event) {
+    let svg = document.getElementsByClassName("speed-toggle")[0];
+    let speed = svg.id;
+    let info = document.getElementsByClassName("speed-info")[0];
+    let nextSpeed = event.target.innerHTML;
+
+    speedDict = {
+        "fast (5 secs)": "fast",
+        "medium (15 secs)": "medium",
+        "slow (45 secs)": "slow",
+    };
+
+    // for use when speed changes med-slow, fast-med, or slow-fast
+    //prevents jank on the speed dial
+    altDict = {
+        "fast (5 secs)": "alt-fast",
+        "medium (15 secs)": "alt-medium",
+        "slow (45 secs)": "alt-slow",
+    }
+
+    clearTimeout(window.speedTimer);
+
+    if ((info.innerHTML == "fast (5 secs)" && nextSpeed == "medium (15 secs)") || (info.innerHTML == "medium (15 secs)" && nextSpeed == "slow (45 secs)") ||
+        (info.innerHTML == "slow (45 secs)" && nextSpeed == "fast (5 secs)")) {
+        var newSpeed = altDict[nextSpeed];
+    } else {
+        var newSpeed = speedDict[nextSpeed];
+    };
+
+    svg.setAttribute("id", newSpeed);
+    info.innerHTML = nextSpeed;
+    info.style.opacity = "1";
+    hideSpeedInfo();
+}
+
 // Handles updating the ids and animation when a user changes the speed
 function changeSpeed() {
     let svg = document.getElementsByClassName("speed-toggle")[0];
@@ -301,21 +337,21 @@ function changeSpeed() {
         // update to medium
         clearTimeout(window.speedTimer);
         svg.setAttribute("id", "medium");
-        info.innerHTML = "15 secs/answer";
+        info.innerHTML = "medium (15 secs)";
         info.style.opacity = "1";
         hideSpeedInfo();
     } else if (speed == "medium") {
         // update to fast
         clearTimeout(window.speedTimer);
         svg.setAttribute("id", "fast");
-        info.innerHTML = "5 secs/answer";
+        info.innerHTML = "fast (5 secs)";
         info.style.opacity = "1";
         hideSpeedInfo();
     } else {
         // update to slow
         clearTimeout(window.speedTimer);
         svg.setAttribute("id", "slow");
-        info.innerHTML = "45 secs/answer";
+        info.innerHTML = "slow (45 secs)";
         info.style.opacity = "1";
         hideSpeedInfo();
     };
