@@ -28,6 +28,7 @@ p {
 button {
     font-size: 16px;
     color: white;
+    cursor: pointer;
 }
 
 li {
@@ -59,15 +60,15 @@ li {
 
 
 #slow {
-    animation: to-slow .5s ease forwards;
+    animation: fast-slow .5s ease forwards;
 }
 
 #medium {
-    animation: to-medium .25s ease forwards;
+    animation: slow-med .25s ease forwards;
 }
 
 #fast {
-    animation: to-fast .25s ease forwards;
+    animation: med-fast .25s ease forwards;
 }
 
 #alt-slow {
@@ -206,31 +207,23 @@ ul.menu-items > li:last-child {
 }
 
 .item-1 {
-    animation: pop-in-side 300ms ease 0ms;
+    animation: rotate-in 300ms ease 0ms;
 }
 
 .item-2 {
-    animation: pop-in-side 300ms ease 150ms;
+    animation: rotate-in 300ms ease 150ms;
 }
 
 .item-3 {
-    animation: pop-in-side 300ms ease 300ms;
+    animation: rotate-in 300ms ease 300ms;
 }
 
 .item-4 {
-    animation: pop-in-side 300ms ease 450ms;
+    animation: rotate-in 300ms ease 450ms;
 }
 
 .shake {
     animation: shake .5s;
-}
-
-
-.paused{
-    -webkit-animation-play-state:paused;
-    -moz-animation-play-state:paused;
-    -o-animation-play-state:paused; 
-    animation-play-state:paused;
 }
 
 @keyframes shake {
@@ -251,7 +244,7 @@ ul.menu-items > li:last-child {
     }
 }
 
-@keyframes to-slow {
+@keyframes fast-slow {
     0% {
         transform: rotateZ(90deg);
     }
@@ -269,7 +262,7 @@ ul.menu-items > li:last-child {
     }
 }
 
-@keyframes to-medium {
+@keyframes slow-med {
     0% {
         transform: rotateZ(0deg);
     }
@@ -287,7 +280,7 @@ ul.menu-items > li:last-child {
     }
 }
 
-@keyframes to-fast {
+@keyframes med-fast {
     0% {
         transform: rotateZ(45deg);
     }
@@ -359,7 +352,7 @@ ul.menu-items > li:last-child {
     }
 }
 
-@keyframes pop-in-side {
+@keyframes rotate-in {
     0% {
         transform: rotateY(-90deg) translateY(30px);
         opacity: 0;
@@ -372,22 +365,7 @@ ul.menu-items > li:last-child {
 }
 
 @media screen and (max-width: 600px) {
-
     .speed-info {
         display: none;
-    }
-
-    @keyframes blur-focus {
-        0% {
-            box-shadow: none;
-        }
-    
-        50% {
-            box-shadow: 0 0 0 80vh rgba(211, 211, 211, .4);
-        }
-    
-        100% {
-            box-shadow: none;
-        }
     }
 }

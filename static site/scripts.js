@@ -11,7 +11,7 @@ function infoChoose() {
         topic.classList.remove("shake");
         menuHeader.classList.add("menu-container");
         button.disabled = false;
-    }, 2000);
+    }, 5000);
 }
 
 // Changes the type of equation shown to the one clicked in the menu
@@ -19,14 +19,14 @@ function infoChoose() {
 function updateTopic(event) {
     document.getElementById("topic-name").innerHTML = event.target.innerHTML;
     let topic = event.target.innerHTML;
-    let dispatch = {
+    let backgroundDict = {
         "choose an equation": 'linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%)',
         "one-step": 'linear-gradient(to top, #30cfd0 0%, #330867 100%)',
         "two-step": 'linear-gradient(15deg, #13547a 0%, #80d0c7 100%)',
         "multi-step": 'linear-gradient(to top, #00c6fb 0%, #005bea 100%)',
         "v.o.b.s.": 'linear-gradient(to top, #09203f 0%, #537895 100%)',
     };
-    document.body.style.backgroundImage = dispatch[topic];
+    document.body.style.backgroundImage = backgroundDict[topic];
 }
 
 // Depending on the type of equation selected, calls a function
@@ -34,14 +34,14 @@ function updateTopic(event) {
 // Shown on screen
 function replaceEquation(event) {
     let topic = document.getElementById("topic-name").innerHTML;
-    let dispatch = {
+    let topicDict = {
         "choose a type of equation": infoChoose,
         "one-step": createOneStep,
         "two-step": createTwoStep,
         "multi-step": createMultiStep,
         "v.o.b.s.": createVobs,
     };
-    dispatch[topic]();
+    topicDict[topic]();
 }
 
 // Updates the inner HTML of the problem and answer shown
