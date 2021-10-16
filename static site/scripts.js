@@ -46,7 +46,6 @@ function replaceEquation(event) {
 
 // Updates the inner HTML of the problem and answer shown
 function updateProblem(equation, answer) {
-    forceCloseMenu();
     let currentEquation = document.getElementById("current-equation");
     currentEquation.style.opacity = "0";
     currentEquation.innerHTML = equation;
@@ -241,31 +240,6 @@ function randInt(min, max) {
     }
   }
 
-  function toggleMenu(event) {
-      if (event.target.nextElementSibling.classList.contains("closed")) {
-          openMenu(event);
-      } else {
-          closeMenu(event);
-      };
-  }
-
-  // Opens the menu
-  function openMenu(event) {
-      event.target.nextElementSibling.classList.replace("closed", "open");
-  }
-
-// Closes the menu
-  function closeMenu(event) {
-      event.target.nextElementSibling.classList.replace("open", "closed");
-  }
-
-// forces the menu closed if next button is hit - not functional
-  function forceCloseMenu() {
-      let menus = document.getElementsByClassName("menu-container");
-      menus[0].classList.replace("open", "closed");
-      menus[1].classList.replace("open", "closed");
-  }
-
 function showAnswer() {
     document.getElementById("current-answer").style.opacity = "1";
 }
@@ -305,7 +279,7 @@ function setSpeed(event) {
     };
 
     // for use when speed changes med-slow, fast-med, or slow-fast
-    //prevents jank on the speed dial
+    // prevents jank on the speed dial
     altDict = {
         "fast (5 secs)": "alt-fast",
         "medium (15 secs)": "alt-medium",
