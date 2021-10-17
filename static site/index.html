@@ -44,7 +44,7 @@
                     <circle cx="25" cy="25" r="20" stroke="white" stroke-width="4" fill="none"/>
                 </svg>
             </div>
-            <div id="speed-toggle" class="fast-slow" onclick="changeSpeed();">
+            <div id="speed-toggle" class="fast-slow" onclick="incrementSpeed();">
                 <svg height="30" width="50">
                     <line x1='25' y1='25' x2='5' y2='10' stroke="white" stroke-width="3"/>
                 </svg>
@@ -59,7 +59,7 @@
             <h1 class="topic" id="topic-name">choose a type of equation</h1>
             <h2 class="equation" id="current-equation"></h2>
             <h2 class="answer" id="current-answer"></h2>
-            <button id="next-button" onclick="replaceEquation();  hideAnswer(); timeAnswer();">next-question</button> 
+            <button id="next-button" onclick="replaceEquation(); hideAnswer(); timeShowAnswer();">next-question</button>
         </main>
 
     </body>
