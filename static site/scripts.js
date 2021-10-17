@@ -267,73 +267,52 @@ function timeAnswer() {
 
 // Sets the speed of the speed toggle based on the menu choice
 function setSpeed(event) {
-    let svg = document.getElementsByClassName("speed-toggle")[0];
-    let speed = svg.id;
-    let info = document.getElementsByClassName("speed-info")[0];
+    let speedToggle = document.getElementById("speed-toggle");
+    let speedInfo = document.getElementById("speed-info");
+    let currSpeed = speedInfo.innerHTML;
     let nextSpeed = event.target.innerHTML;
-
-    speedDict = {
-        "fast (5 secs)": "fast",
-        "medium (15 secs)": "medium",
-        "slow (45 secs)": "slow",
-    };
-
-    // for use when speed changes med-slow, fast-med, or slow-fast
-    // prevents jank on the speed dial
-    altDict = {
-        "fast (5 secs)": "alt-fast",
-        "medium (15 secs)": "alt-medium",
-        "slow (45 secs)": "alt-slow",
-    }
+    let nextSpeedClass = currSpeed.slice(0, 4) + "-" + nextSpeed.slice(0, 4);
 
     clearTimeout(window.speedTimer);
-
-    if ((info.innerHTML == "fast (5 secs)" && nextSpeed == "medium (15 secs)") || (info.innerHTML == "medium (15 secs)" && nextSpeed == "slow (45 secs)") ||
-        (info.innerHTML == "slow (45 secs)" && nextSpeed == "fast (5 secs)")) {
-        var newSpeed = altDict[nextSpeed];
-    } else {
-        var newSpeed = speedDict[nextSpeed];
-    };
-
-    svg.setAttribute("id", newSpeed);
-    info.innerHTML = nextSpeed;
-    info.style.opacity = "1";
+    speedInfo.innerHTML = nextSpeed;
+    speedInfo.style.opacity = "1";
+    speedToggle.setAttribute("class", nextSpeedClass);
     hideSpeedInfo();
 }
 
-// Handles updating the ids and animation when a user changes the speed
+// Handles updating the ids and animation when a user changes the speed on the icon
 function changeSpeed() {
-    let svg = document.getElementsByClassName("speed-toggle")[0];
-    let speed = svg.id;
-    let info = document.getElementsByClassName("speed-info")[0];
+    let speedToggle = document.getElementById("speed-toggle");
+    let currSpeed = speedToggle.className.slice(-4);
+    let speedInfo = document.getElementById("speed-info");
+    var nextSpeed = "";
+    var nextSpeedClass = "";
 
-    if (speed == "slow") {
-        // update to medium
-        clearTimeout(window.speedTimer);
-        svg.setAttribute("id", "medium");
-        info.innerHTML = "medium (15 secs)";
-        info.style.opacity = "1";
-        hideSpeedInfo();
-    } else if (speed == "medium") {
-        // update to fast
-        clearTimeout(window.speedTimer);
-        svg.setAttribute("id", "fast");
-        info.innerHTML = "fast (5 secs)";
-        info.style.opacity = "1";
-        hideSpeedInfo();
-    } else {
-        // update to slow
-        clearTimeout(window.speedTimer);
-        svg.setAttribute("id", "slow");
-        info.innerHTML = "slow (45 secs)";
-        info.style.opacity = "1";
-        hideSpeedInfo();
-    };
+    switch (currSpeed) {
+        case "slow":
+            nextSpeed = "medium (15 secs)";
+            nextSpeedClass = "slow-medi";
+            break;
+        case "medi":
+            nextSpeed = "fast (5 secs)";
+            nextSpeedClass = "medi-fast";
+            break;
+        case "fast":
+            nextSpeed = "slow (45 secs)";
+            nextSpeedClass = "fast-slow";
+            break;
+    }
+
+    clearTimeout(window.speedTimer);
+    speedInfo.innerHTML = nextSpeed;
+    speedInfo.style.opacity = "1";
+    speedToggle.setAttribute("class", nextSpeedClass);
+    hideSpeedInfo();
 }
 
 function hideSpeedInfo() {
     window.speedTimer = setTimeout(function() {
-        document.getElementsByClassName("speed-info")[0].style.opacity = "0";
+        document.getElementById("speed-info").style.opacity = "0";
     }, 5000);
 }
 

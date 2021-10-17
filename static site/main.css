@@ -35,51 +35,52 @@ li {
     list-style-type: none;
 }
 
-.speed-outer, .speed-toggle {
+#speed-outer, #speed-toggle {
     position: absolute;
     right: 20px;
     top: 30px;
     height: 50px;
     width: 50px;
-}
-
-.speed-toggle {
-    transition: all .2s ease-in-out;
     user-select: none;
 }
 
-.speed-toggle:hover {
+#speed-toggle {
+    transition: all .2s ease-in-out;
+}
+
+#speed-toggle:hover {
     cursor: pointer;
 }
 
-.speed-info {
+#speed-info {
     position: absolute;
     right: 90px;
     top: 20px;
+    user-select: none;
 }
 
 
-#slow {
+.fast-slow {
     animation: fast-slow .5s ease forwards;
 }
 
-#medium {
-    animation: slow-med .25s ease forwards;
+.slow-medi {
+    animation: slow-medi .25s ease forwards;
 }
 
-#fast {
-    animation: med-fast .25s ease forwards;
+.medi-fast {
+    animation: medi-fast .25s ease forwards;
 }
 
-#alt-slow {
-    animation:med-slow .25s ease forwards;
+.medi-slow {
+    animation:medi-slow .25s ease forwards;
 }
 
-#alt-medium {
-    animation: fast-med .25s ease forwards;
+.fast-medi {
+    animation: fast-medi .25s ease forwards;
 }
 
-#alt-fast {
+.slow-fast {
     animation: slow-fast .5s ease forwards;
 }
 
@@ -124,18 +125,6 @@ main > h2, h1 {
 #current-answer {
     opacity: 0;
 }
-
-/* #menu-icon {
-    position: fixed;
-    right: 7%;
-    top: 50%;
-    transform: translateY(-50%);
-    user-select: none;
-    z-index: 1;
-    border-radius: 50px;
-    width: 100px;
-    height: 100px;
-} */
 
 menu {
     padding: 0px;
@@ -262,7 +251,7 @@ ul.menu-items > li:last-child {
     }
 }
 
-@keyframes slow-med {
+@keyframes slow-medi {
     0% {
         transform: rotateZ(0deg);
     }
@@ -280,7 +269,7 @@ ul.menu-items > li:last-child {
     }
 }
 
-@keyframes med-fast {
+@keyframes medi-fast {
     0% {
         transform: rotateZ(45deg);
     }
@@ -298,7 +287,7 @@ ul.menu-items > li:last-child {
     }
 }
 
-@keyframes fast-med {
+@keyframes fast-medi {
     0% {
         transform: rotateZ(90deg);
     }
@@ -316,7 +305,7 @@ ul.menu-items > li:last-child {
     }
 }
 
-@keyframes med-slow {
+@keyframes medi-slow {
     0% {
         transform: rotateZ(45deg);
     }
