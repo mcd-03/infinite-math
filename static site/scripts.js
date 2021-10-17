@@ -248,13 +248,13 @@ function hideAnswer() {
     document.getElementById("current-answer").style.opacity = "0";
 }
 
-function timeAnswer() {
+function timeShowAnswer() {
     clearTimeout(window.answerTimer);
-    let svg = document.getElementsByClassName("speed-toggle")[0];
-    let currentSpeed = svg.id;
-    if (currentSpeed == "slow") {
+    let speedToggle = document.getElementById("speed-toggle");
+    let currSpeed = speedToggle.className.slice(-4);
+    if (currSpeed == "slow") {
         var speed = 45000; //slowest speed
-    } else if (currentSpeed == "medi") {
+    } else if (currSpeed == "medi") {
         var speed = 15000; //medium speed
     } else {
         var speed = 5000; //fastest speed
@@ -281,7 +281,7 @@ function setSpeed(event) {
 }
 
 // Handles updating the ids and animation when a user changes the speed on the icon
-function changeSpeed() {
+function incrementSpeed() {
     let speedToggle = document.getElementById("speed-toggle");
     let currSpeed = speedToggle.className.slice(-4);
     let speedInfo = document.getElementById("speed-info");
