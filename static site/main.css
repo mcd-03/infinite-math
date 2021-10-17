@@ -354,7 +354,7 @@ ul.menu-items > li:last-child {
 }
 
 @media screen and (max-width: 600px) {
-    .speed-info {
+    #speed-info {
         display: none;
     }
 }

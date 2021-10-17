@@ -254,7 +254,7 @@ function timeAnswer() {
     let currentSpeed = svg.id;
     if (currentSpeed == "slow") {
         var speed = 45000; //slowest speed
-    } else if (currentSpeed == "medium") {
+    } else if (currentSpeed == "medi") {
         var speed = 15000; //medium speed
     } else {
         var speed = 5000; //fastest speed
