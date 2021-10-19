@@ -316,5 +316,33 @@ function hideSpeedInfo() {
     }, 5000);
 }
 
+function displayCountdown() {
+    clearInterval(window.countdown);
+    let speedToggle = document.getElementById("speed-toggle");
+    let currSpeed = speedToggle.className.slice(-4);
+
+
+    if (currSpeed == "slow") {
+        var timeLeft = 45; //slowest speed
+    } else if (currSpeed == "medi") {
+        var timeLeft = 15; //medium speed
+    } else {
+        var timeLeft = 5; //fastest speed
+    };
+
+    var timer = document.getElementById("time-left");
+    timer.style.opacity = "1";
+    timer.innerHTML = timeLeft;
+
+    window.countdown = setInterval(function(){
+      timeLeft--;
+      timer.innerHTML = timeLeft;
+      if (timeLeft == 0) {
+        clearInterval(window.countdown);
+        timer.style.opacity = "0";
+      };
+    }, 1000);
+}
+
 // Called to show the default speed but hide 5s after page load
 hideSpeedInfo();
