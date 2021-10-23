@@ -5,13 +5,10 @@ function infoChoose() {
     topic.setAttribute("class", "shake");
     let menuHeader = document.getElementById("menu-header");
     menuHeader.classList.remove("menu-container");
-    let button = document.getElementById("next-button");
-    button.disabled = true;
-    setTimeout(function() {
+    window.showEquationTypes = setTimeout(function() {
         topic.classList.remove("shake");
         menuHeader.classList.add("menu-container");
-        button.disabled = false;
-    }, 5000);
+    }, 8000);
 }
 
 // Changes the type of equation shown to the one clicked in the menu
@@ -20,11 +17,11 @@ function updateTopic(event) {
     document.getElementById("topic-name").innerHTML = event.target.innerHTML;
     let topic = event.target.innerHTML;
     let backgroundDict = {
-        "choose an equation": 'linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%)',
-        "one-step": 'linear-gradient(to top, #30cfd0 0%, #330867 100%)',
-        "two-step": 'linear-gradient(15deg, #13547a 0%, #80d0c7 100%)',
-        "multi-step": 'linear-gradient(to top, #00c6fb 0%, #005bea 100%)',
-        "v.o.b.s.": 'linear-gradient(to top, #09203f 0%, #537895 100%)',
+        "choose an equation": 'linear-gradient(to bottom, #16222a, #3a6073)',
+        "one-step": 'linear-gradient(to right, #1a2980, #26d0ce)',
+        "two-step": 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)',
+        "multi-step": 'linear-gradient(to right, #fe8c00, #f83600)',
+        "v.o.b.s.": 'linear-gradient(to left, #cc2b5e, #753a88)',
     };
     document.body.style.backgroundImage = backgroundDict[topic];
 }
@@ -248,6 +245,7 @@ function hideAnswer() {
     document.getElementById("current-answer").style.opacity = "0";
 }
 
+// Creates a timeout that will display the answer after the user selected time expires
 function timeShowAnswer() {
     clearTimeout(window.answerTimer);
     let speedToggle = document.getElementById("speed-toggle");
@@ -271,16 +269,19 @@ function setSpeed(event) {
     let speedInfo = document.getElementById("speed-info");
     let currSpeed = speedInfo.innerHTML;
     let nextSpeed = event.target.innerHTML;
-    let nextSpeedClass = currSpeed.slice(0, 4) + "-" + nextSpeed.slice(0, 4);
 
-    clearTimeout(window.speedTimer);
-    speedInfo.innerHTML = nextSpeed;
-    speedInfo.style.opacity = "1";
-    speedToggle.setAttribute("class", nextSpeedClass);
-    hideSpeedInfo();
+    // Only set the speed if the new speed is different
+    if (currSpeed !== nextSpeed) {
+        let nextSpeedClass = currSpeed.slice(0, 4) + "-" + nextSpeed.slice(0, 4);
+        clearTimeout(window.speedTimer);
+        speedInfo.innerHTML = nextSpeed;
+        speedInfo.style.opacity = "1";
+        speedToggle.setAttribute("class", nextSpeedClass);
+        hideSpeedInfo();
+    }
 }
 
-// Handles updating the ids and animation when a user changes the speed on the icon
+// Handles updating the ids and animation when a user changes the speed by clicking the icon
 function incrementSpeed() {
     let speedToggle = document.getElementById("speed-toggle");
     let currSpeed = speedToggle.className.slice(-4);
@@ -310,14 +311,7 @@ function incrementSpeed() {
     hideSpeedInfo();
 }
 
-function hideSpeedInfo() {
-    window.speedTimer = setTimeout(function() {
-        document.getElementById("speed-info").style.opacity = "0";
-    }, 5000);
-}
-
-
-// Clears then sets a countdown variable if a type of equation is chosen
+// Clears then sets a countdown variable when the "next-question" button is used if a type of equation is chosen
 function displayCountdown() {
 
     if (document.getElementById("topic-name").innerHTML !== "choose a type of equation") {
@@ -349,5 +343,12 @@ function displayCountdown() {
     }
 }
 
+function hideSpeedInfo() {
+    window.speedTimer = setTimeout(function() {
+        document.getElementById("speed-info").style.opacity = "0";
+    }, 5000);
+}
+
 // Called to show the default speed but hide 5s after page load
 hideSpeedInfo();
+
