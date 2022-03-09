@@ -1,13 +1,13 @@
 # infinite-math
 
-Infinite-Math is a lightweight, responsive, equation practice webapp.
+infinite-math is a lightweight, responsive, equation practice webapp.
 
-Infinite-Math is built on:
+infinite-math is built on:
 - vanilla js
 - pure css
 - html
 - MathJax
 
-## see infinite-math hosted at
+## hosted at
 
-infinite-math.onrender.com
+[infinite-math.onrender.com](infinite-math.onrender.com)
