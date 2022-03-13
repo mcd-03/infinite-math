@@ -61,7 +61,7 @@ li {
     -webkit-user-select: none;
 }
 
-#speed-outer:active, #speed-toggle:active {
+#speed-outer:active, #speed-toggle:active, button {
     -webkit-tap-highlight-color: transparent;
 }
 
