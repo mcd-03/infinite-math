@@ -24,6 +24,7 @@ function updateTopic(event) {
         "v.o.b.s.": 'linear-gradient(to left, #cc2b5e, #753a88)',
     };
     document.body.style.backgroundImage = backgroundDict[topic];
+    document.getElementById("current-equation").innerHTML = "";
 }
 
 // Depending on the type of equation selected, calls a function
@@ -39,6 +40,7 @@ function replaceEquation(event) {
         "v.o.b.s.": createVobs,
     };
     topicDict[topic]();
+
 }
 
 // Updates the inner HTML of the problem and answer shown
@@ -237,6 +239,19 @@ function randInt(min, max) {
     }
   }
 
+function updateButtonToCheck() {
+    let nextButton = document.getElementById("next-button");
+    nextButton.innerHTML = 'check now';
+    nextButton.setAttribute('onclick','showAnswer(); updateButtonToAdvance();')
+}
+
+function updateButtonToAdvance() {
+    let nextButton = document.getElementById("next-button");
+    nextButton.innerHTML = 'next question';
+    nextButton.setAttribute('onclick','replaceEquation(); hideAnswer(); timeShowAnswer(); displayCountdown(); updateButtonToCheck();');    
+    var timer = document.getElementById('time-left').style.opacity = "0";
+}
+
 function showAnswer() {
     document.getElementById("current-answer").style.opacity = "1";
 }
@@ -261,6 +276,7 @@ function timeShowAnswer() {
     window.answerTimer = setTimeout(function() {
         showAnswer();
     }, speed);
+
 }
 
 // Sets the speed of the speed toggle based on the menu choice
@@ -319,7 +335,6 @@ function displayCountdown() {
         let speedToggle = document.getElementById("speed-toggle");
         let currSpeed = speedToggle.className.slice(-4);
     
-    
         if (currSpeed == "slow") {
             var timeLeft = 45; //slowest speed
         } else if (currSpeed == "medi") {
@@ -338,6 +353,7 @@ function displayCountdown() {
           if (timeLeft == 0) {
             clearInterval(window.countdown);
             timer.style.opacity = "0";
+            updateButtonToAdvance();
           };
         }, 1000);
     }
