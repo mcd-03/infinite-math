@@ -1,3 +1,6 @@
+state = {
+    "buttonVisible": 0,
+}
 
 // Alerts users to the menu if they don't select an equation type
 function infoChoose() {
@@ -5,10 +8,22 @@ function infoChoose() {
     topic.setAttribute("class", "shake");
     let menuHeader = document.getElementById("menu-header");
     menuHeader.classList.remove("menu-container");
-    window.showEquationTypes = setTimeout(function() {
+    window.showEquationTypes = setTimeout(function () {
         topic.classList.remove("shake");
         menuHeader.classList.add("menu-container");
     }, 8000);
+}
+
+function addButton(state) {
+    if (state["buttonVisible"] == 0) {
+        state["buttonVisible"] = 1;
+        let main = document.getElementById("main");
+        let button = document.createElement("button");
+        button.setAttribute("id", "next-button");
+        button.setAttribute("onclick", "replaceEquation(); hideAnswer(); timeShowAnswer(); displayCountdown(); updateButtonToCheck();");
+        button.innerHTML = "next question";
+        main.appendChild(button);
+    };
 }
 
 // Changes the type of equation shown to the one clicked in the menu
@@ -25,6 +40,7 @@ function updateTopic(event) {
     };
     document.body.style.backgroundImage = backgroundDict[topic];
     document.getElementById("current-equation").innerHTML = "";
+    addButton(state);
 }
 
 // Depending on the type of equation selected, calls a function
@@ -48,7 +64,7 @@ function updateProblem(equation, answer) {
     let currentEquation = document.getElementById("current-equation");
     currentEquation.style.opacity = "0";
     currentEquation.innerHTML = equation;
-    let updateProblemTimer = setTimeout(function() {
+    let updateProblemTimer = setTimeout(function () {
         currentEquation.style.opacity = "1";
     }, 200);
     let currentAnswer = document.getElementById("current-answer");
@@ -74,18 +90,18 @@ function createOneStep() {
 }
 
 function oneDivision() {
-    let a = randInt(2,10);
-    let b = randInt(2,5);
-    let equation = `\\(${a}x = ${a*b}\\)`;
+    let a = randInt(2, 10);
+    let b = randInt(2, 5);
+    let equation = `\\(${a}x = ${a * b}\\)`;
     let answer = `\\(x=${b}\\)`;
     updateProblem(equation, answer);
 }
 
 function oneMultiplication() {
-    let a = randInt(2,10);
+    let a = randInt(2, 10);
     let b = randInt(-10, 11);
     let equation = `\\(\\frac{x}{${a}} = ${b}\\)`;
-    let answer = `\\(x=${a*b}\\)`;
+    let answer = `\\(x=${a * b}\\)`;
     updateProblem(equation, answer);
 }
 
@@ -93,7 +109,7 @@ function oneSubtraction() {
     let a = randInt(-10, 20);
     let b = randInt(-20, 30);
     let equation = `\\(x-${a} = ${b}\\)`;
-    let answer = `\\(x=${b+a}\\)`
+    let answer = `\\(x=${b + a}\\)`
     updateProblem(equation, answer);
 }
 
@@ -101,7 +117,7 @@ function oneAddition() {
     let a = randInt(-10, 20);
     let b = randInt(-20, 30);
     let equation = `\\(x+${a} = ${b}\\)`;
-    let answer = `\\(x=${b-a}\\)`
+    let answer = `\\(x=${b - a}\\)`
     updateProblem(equation, answer);
 }
 
@@ -123,7 +139,7 @@ function twoAddition() {
     let a = randInt(2, 10);
     let b = randInt(-10, 15);
     let c = randInt(-10, 15);
-    let equation = `\\(${a}x+${b} = ${a*c+b}\\)`;
+    let equation = `\\(${a}x+${b} = ${a * c + b}\\)`;
     let answer = `\\(x=${c}\\)`;
     updateProblem(equation, answer);
 }
@@ -131,10 +147,10 @@ function twoAddition() {
 
 function twoMultiplication() {
     let a = randInt(2, 10);
-    let b = randInt(2,10);
+    let b = randInt(2, 10);
     let c = randInt(-10, 11);
     let equation = `\\(\\frac{x}{${a}} - ${b} = ${c}\\)`;
-    let answer = `\\(x=${a*(c+b)}\\)`;
+    let answer = `\\(x=${a * (c + b)}\\)`;
     updateProblem(equation, answer);
 }
 
@@ -142,8 +158,8 @@ function twoDivision() {
     let a = randInt(2, 10);
     let b = randInt(2, 10);
     let c = randInt(-5, 5);
-    let equation = `\\(${a}(x + ${b}) = ${a*c}\\)`;
-    let answer = `\\(x=${c-b}\\)`;
+    let equation = `\\(${a}(x + ${b}) = ${a * c}\\)`;
+    let answer = `\\(x=${c - b}\\)`;
     updateProblem(equation, answer);
 }
 
@@ -161,8 +177,8 @@ function multiDistribute() {
     let d = randInt(-10, 10)
     let equation = `\\(${a}(${b}x+${c}) = ${d}\\)`;
 
-    let numerator = d-a*c;
-    let denominator = a*b;
+    let numerator = d - a * c;
+    let denominator = a * b;
 
     let answer = simplifyFraction(numerator, denominator);
     updateProblem(equation, answer);
@@ -174,14 +190,14 @@ function createVobs() {
     let c = randInt(2, 11);
     let d = randInt(2, 6);
     let equation = `\\(${a}x+${b}=${c}x+${d}\\)`;
-    
+
     if (a == c && b == d) {
         var answer = `\\(x=\\mathbb{R}\\)`;
     } else if (a == c) {
         var answer = 'No Solution';
     } else {
-        var numerator = d-b;
-        var denominator = a-c;
+        var numerator = d - b;
+        var denominator = a - c;
         var answer = simplifyFraction(numerator, denominator);
     }
     updateProblem(equation, answer);
@@ -191,36 +207,36 @@ function randInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-  }
+}
 
-  function gcd_two_numbers(x, y) {
-    if ((typeof x !== 'number') || (typeof y !== 'number')) 
-      return false;
+function gcd_two_numbers(x, y) {
+    if ((typeof x !== 'number') || (typeof y !== 'number'))
+        return false;
     x = Math.abs(x);
     y = Math.abs(y);
-    while(y) {
-      let t = y;
-      y = x % y;
-      x = t;
+    while (y) {
+        let t = y;
+        y = x % y;
+        x = t;
     }
     return x;
-  }
+}
 
-  function simplifyFraction(numerator, denominator) {
-    
+function simplifyFraction(numerator, denominator) {
+
     let gcd = gcd_two_numbers(numerator, denominator);
-    numerator = numerator/gcd;
-    denominator = denominator/gcd;
+    numerator = numerator / gcd;
+    denominator = denominator / gcd;
 
     if (denominator < 0) {
-        numerator = numerator *-1;
-        denominator = denominator *-1;
+        numerator = numerator * -1;
+        denominator = denominator * -1;
     }
 
     let isNegative = 0;
 
     if (numerator < 0) {
-        numerator = numerator *-1;
+        numerator = numerator * -1;
         isNegative = 1;
     }
 
@@ -237,18 +253,18 @@ function randInt(min, max) {
     } else {
         return `\\(x=\\frac{${numerator}}{${denominator}}\\)`;
     }
-  }
+}
 
 function updateButtonToCheck() {
     let nextButton = document.getElementById("next-button");
     nextButton.innerHTML = 'check now';
-    nextButton.setAttribute('onclick','showAnswer(); updateButtonToAdvance();')
+    nextButton.setAttribute('onclick', 'showAnswer(); updateButtonToAdvance();')
 }
 
 function updateButtonToAdvance() {
     let nextButton = document.getElementById("next-button");
     nextButton.innerHTML = 'next question';
-    nextButton.setAttribute('onclick','replaceEquation(); hideAnswer(); timeShowAnswer(); displayCountdown(); updateButtonToCheck();');    
+    nextButton.setAttribute('onclick', 'replaceEquation(); hideAnswer(); timeShowAnswer(); displayCountdown(); updateButtonToCheck();');
     var timer = document.getElementById('time-left').style.opacity = "0";
 }
 
@@ -273,7 +289,7 @@ function timeShowAnswer() {
         var speed = 5000; //fastest speed
     };
 
-    window.answerTimer = setTimeout(function() {
+    window.answerTimer = setTimeout(function () {
         showAnswer();
     }, speed);
 
@@ -334,7 +350,7 @@ function displayCountdown() {
         clearInterval(window.countdown);
         let speedToggle = document.getElementById("speed-toggle");
         let currSpeed = speedToggle.className.slice(-4);
-    
+
         if (currSpeed == "slow") {
             var timeLeft = 45; //slowest speed
         } else if (currSpeed == "medi") {
@@ -342,25 +358,25 @@ function displayCountdown() {
         } else {
             var timeLeft = 5; //fastest speed
         };
-    
+
         var timer = document.getElementById("time-left");
         timer.style.opacity = "1";
         timer.innerHTML = timeLeft;
-    
-        window.countdown = setInterval(function(){
-          timeLeft--;
-          timer.innerHTML = timeLeft;
-          if (timeLeft == 0) {
-            clearInterval(window.countdown);
-            timer.style.opacity = "0";
-            updateButtonToAdvance();
-          };
+
+        window.countdown = setInterval(function () {
+            timeLeft--;
+            timer.innerHTML = timeLeft;
+            if (timeLeft == 0) {
+                clearInterval(window.countdown);
+                timer.style.opacity = "0";
+                updateButtonToAdvance();
+            };
         }, 1000);
     }
 }
 
 function hideSpeedInfo() {
-    window.speedTimer = setTimeout(function() {
+    window.speedTimer = setTimeout(function () {
         document.getElementById("speed-info").style.opacity = "0";
     }, 5000);
 }

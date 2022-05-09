@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     overflow: hidden;
@@ -10,7 +11,6 @@ html, body {
 body {
     background-image: linear-gradient(to bottom, #16222a, #3a6073);
     background-repeat: no-repeat;
-
 }
 
 h1 {
@@ -35,7 +35,8 @@ li {
     list-style-type: none;
 }
 
-#speed-outer, #speed-toggle {
+#speed-outer,
+#speed-toggle {
     position: absolute;
     right: 20px;
     top: 30px;
@@ -61,7 +62,9 @@ li {
     -webkit-user-select: none;
 }
 
-#speed-outer:active, #speed-toggle:active, button {
+#speed-outer:active,
+#speed-toggle:active,
+button {
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -78,7 +81,7 @@ li {
 }
 
 .medi-slow {
-    animation:medi-slow .25s ease forwards;
+    animation: medi-slow .25s ease forwards;
 }
 
 .fast-medi {
@@ -88,7 +91,6 @@ li {
 .slow-fast {
     animation: slow-fast .5s ease forwards;
 }
-
 
 button {
     border: none;
@@ -124,7 +126,8 @@ main {
     -webkit-user-select: none;
 }
 
-main > h2, h1 {
+main>h2,
+h1 {
     height: 40px;
 }
 
@@ -141,14 +144,14 @@ menu {
     -webkit-user-select: none;
 }
 
-menu > ul {
+menu>ul {
     float: left;
     list-style: none;
     padding: 0px;
     margin: 0px;
 }
 
-menu > ul > li {
+menu>ul>li {
     background-color: rgba(211, 211, 211, .4);
     float: left;
     width: 150px;
@@ -158,15 +161,15 @@ menu > ul > li {
     cursor: pointer;
 }
 
-menu > ul > li:first-child {
+menu>ul>li:first-child {
     border-radius: 5px 0 0 5px;
 }
 
-menu > ul > li:last-child {
+menu>ul>li:last-child {
     border-radius: 0 5px 5px 0;
 }
 
-menu > ul > li:hover {
+menu>ul>li:hover {
     background-color: rgba(211, 211, 211, .2);
 }
 
@@ -183,27 +186,27 @@ ul.menu-items {
     padding: 0px;
 }
 
-ul.menu-items > li {
+ul.menu-items>li {
     background-color: rgba(211, 211, 211, .4);
 }
 
-ul.menu-items > li:hover{
+ul.menu-items>li:hover {
     background-color: rgba(211, 211, 211, .2);
 }
 
-ul.menu-items > li:last-child {
+ul.menu-items>li:last-child {
     border-radius: 0 0 5px 5px;
 }
 
-.menu-container > ul > li {
+.menu-container>ul>li {
     display: none;
 }
 
-.menu-container:hover > ul > li {
+.menu-container:hover>ul>li {
     display: block;
 }
 
-.menu-container > ul > li:active {
+.menu-container>ul>li:active {
     transform: translateZ(-8px);
 }
 
@@ -255,13 +258,13 @@ ul.menu-items > li:last-child {
         transform: rotateZ(90deg);
     }
 
-    10% { 
+    10% {
         transform: rotateZ(100deg);
     }
 
     70% {
         transform: rotateZ(-10deg);
-    } 
+    }
 
     100% {
         transform: rotateZ(0deg);
@@ -273,13 +276,13 @@ ul.menu-items > li:last-child {
         transform: rotateZ(0deg);
     }
 
-    10% { 
+    10% {
         transform: rotateZ(-10deg);
     }
 
     70% {
         transform: rotateZ(55deg);
-    } 
+    }
 
     100% {
         transform: rotateZ(45deg);
@@ -291,13 +294,13 @@ ul.menu-items > li:last-child {
         transform: rotateZ(45deg);
     }
 
-    10% { 
+    10% {
         transform: rotateZ(35deg);
     }
 
     70% {
         transform: rotateZ(100deg);
-    } 
+    }
 
     100% {
         transform: rotateZ(90deg);
@@ -309,13 +312,13 @@ ul.menu-items > li:last-child {
         transform: rotateZ(90deg);
     }
 
-    10% { 
+    10% {
         transform: rotateZ(100deg);
     }
 
     70% {
         transform: rotateZ(35deg);
-    } 
+    }
 
     100% {
         transform: rotateZ(45deg);
@@ -327,13 +330,13 @@ ul.menu-items > li:last-child {
         transform: rotateZ(45deg);
     }
 
-    10% { 
+    10% {
         transform: rotateZ(55deg);
     }
 
     70% {
         transform: rotateZ(-10deg);
-    } 
+    }
 
     100% {
         transform: rotateZ(0deg);
@@ -345,13 +348,13 @@ ul.menu-items > li:last-child {
         transform: rotateZ(0deg);
     }
 
-    10% { 
+    10% {
         transform: rotateZ(-10deg);
     }
 
     70% {
         transform: rotateZ(100deg);
-    } 
+    }
 
     100% {
         transform: rotateZ(90deg);
@@ -362,7 +365,7 @@ ul.menu-items > li:last-child {
     0% {
         transform: rotateY(-90deg) translateY(30px);
         opacity: 0;
-    }    
+    }
 
     100% {
         transform: rotateY(0deg) translateY(0px);
@@ -397,17 +400,21 @@ ul.menu-items > li:last-child {
         display: none;
     }
 
-    h1, h2 {
+    h1,
+    h2 {
         font-size: 20px;
     }
 
-    p, button {
+    p,
+    button {
         font-size: 16px;
     }
 }
 
 @media screen and (max-width: 400px) {
-    #speed-outer, #speed-toggle {
+
+    #speed-outer,
+    #speed-toggle {
         display: none;
     }
 }
