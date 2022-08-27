@@ -28,6 +28,8 @@ function addButton(state) {
 
 // Changes the type of equation shown to the one clicked in the menu
 // Updates the gradient
+// Clears the countdown timer
+// Hides the countdown timer
 function updateTopic(event) {
     document.getElementById("topic-name").innerHTML = event.target.innerHTML;
     let topic = event.target.innerHTML;
@@ -40,7 +42,9 @@ function updateTopic(event) {
     };
     document.body.style.backgroundImage = backgroundDict[topic];
     document.getElementById("current-equation").innerHTML = "";
+    hideAnswer();
     addButton(state);
+    updateButtonToAdvance();
 }
 
 // Depending on the type of equation selected, calls a function
@@ -265,7 +269,7 @@ function updateButtonToAdvance() {
     let nextButton = document.getElementById("next-button");
     nextButton.innerHTML = 'next question';
     nextButton.setAttribute('onclick', 'replaceEquation(); hideAnswer(); timeShowAnswer(); displayCountdown(); updateButtonToCheck();');
-    var timer = document.getElementById('time-left').style.opacity = "0";
+    document.getElementById('time-left').style.opacity = "0";
 }
 
 function showAnswer() {
@@ -373,6 +377,12 @@ function displayCountdown() {
             };
         }, 1000);
     }
+}
+
+function hideCountdown() {
+    var timer = document.getElementById('time-left');
+    timer.style.opacity = "0";
+    timer.innerHTML = "";
 }
 
 function hideSpeedInfo() {
